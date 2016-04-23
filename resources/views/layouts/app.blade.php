@@ -5,25 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Sistema de Arrendamiento</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -40,7 +31,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Sistema de Arrendamiento
                 </a>
             </div>
 
@@ -57,15 +48,65 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                         <!-- Botton de usuario-->
+                        <div class="collapse navbar-collapse">
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="dropdown">
+                                    <!-- Nombre de usuario-->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <strong>&nbsp; {{ Auth::user()->name }} &nbsp;</strong>
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </a>
+
+                                    <!-- contenido del boton-->
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="navbar-login">
+                                                <div class="row">
+                                                    <!-- icono grande -->
+                                                    <div class="col-lg-4">
+                                                        <p class="text-center">
+                                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                                        </p>
+                                                    </div>
+                                                    <!-- Nombre, email y boton de cuenta -->
+                                                    <div class="col-lg-8">
+                                                        <p class="text-left"><strong>{{ Auth::user()->name }}</strong></p>
+                                                        <p class="text-left small">{{ Auth::user()->email }}</p>
+                                                        <p class="text-left">
+                                                            <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <!-- linea divisora -->
+                                        <li class="divider"></li>
+
+                                        <!-- boton cerrar sesion -->
+                                        <li>
+                                            <div class="navbar-login navbar-login-session">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <p>
+                                                            <a href="{{ url('/logout') }}" class="btn btn-danger btn-block"><b>Cerrar Sesion</b></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+
                             </ul>
-                        </li>
+
+                        </div>
                     @endif
                 </ul>
             </div>
@@ -73,10 +114,24 @@
     </nav>
 
     @yield('content')
+    
 
+    <footer class="navbar navbar-default navbar-fixed-bottom">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="/">© {{ date("Y") }} Nombre de la Compañia</a></li>
+                    <li><a href="#">Terminos de servicio</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    </footer>
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
