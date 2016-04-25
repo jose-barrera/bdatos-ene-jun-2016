@@ -143,14 +143,14 @@ class CreateTables extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('message_categories');
-		Schema::drop('messages');
-		Schema::drop('notifications');
-		Schema::drop('properties');
-		Schema::drop('property_groups');
-		Schema::drop('property_types');
-		Schema::drop('rel_user_role');
 		Schema::drop('rents');
+		Schema::drop('rel_user_role');
+		Schema::drop('notifications');
+		Schema::drop('messages');
+		Schema::drop('message_categories');
+		Schema::drop('properties');
+		Schema::drop('property_types');
+		Schema::drop('property_groups');
 		Schema::drop('user_roles');
 		Schema::drop('users');
 	}
