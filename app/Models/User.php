@@ -29,6 +29,11 @@ class User extends BaseUser
 
 
 
+	public function full_name()
+	{
+		return "$this->first_name $this->last_name";
+	}
+
 	public function roles()
 	{
 		return $this->belongsToMany('App\Models\UserRole', 'rel_user_role',

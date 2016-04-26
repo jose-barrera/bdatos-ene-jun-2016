@@ -57,7 +57,7 @@
                                     <!-- Nombre de usuario-->
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                                         <span class="glyphicon glyphicon-user"></span>
-                                        <strong>&nbsp; {{ Auth::user()->name }} &nbsp;</strong>
+                                        <strong>&nbsp; {{ Auth::user()->first_name }} &nbsp;</strong>
                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                     </a>
 
@@ -67,14 +67,14 @@
                                             <div class="navbar-login">
                                                 <div class="row">
                                                     <!-- icono grande -->
-                                                    <div class="col-lg-4">
+                                                    <div class="col-sm-4">
                                                         <p class="text-center">
                                                             <span class="glyphicon glyphicon-user icon-size"></span>
                                                         </p>
                                                     </div>
                                                     <!-- Nombre, email y boton de cuenta -->
-                                                    <div class="col-lg-8">
-                                                        <p class="text-left"><strong>{{ Auth::user()->name }}</strong></p>
+                                                    <div class="col-sm-8">
+                                                        <p class="text-left"><strong>{{ Auth::user()->full_name() }}</strong></p>
                                                         <p class="text-left small">{{ Auth::user()->email }}</p>
                                                         <p class="text-left">
                                                             <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
