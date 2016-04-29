@@ -58,10 +58,10 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->fullName() }}</td>
                     <td style="text-align: center">
-                        <a href="#myModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
+                        <a href="{{ route('users.destroy', []) }}" role="button" data-toggle="modal"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> </a>
                     </td>
                     <td style="text-align: center">
-                        <a href="#edit" role="button" data-toggle="modal"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> </a>
+                        <a href="#myModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
                     </td>
                 </tr>
             @endforeach
