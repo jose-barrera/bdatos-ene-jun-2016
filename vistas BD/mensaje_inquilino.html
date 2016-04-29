@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sistema de Arrendamiento</title>
+    <meta name="Sistema de Arrendamiento">
+    <meta name="Descripción" content="Programa para administrar propiedades.">
+    <!-- CSS and BOOTSTRAP (Los archivos deben tener este preciso orden para funcionar correctamente)-->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="css/bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- Script para añadir el Footer-->
+    <script>
+        $(function() {
+            $("#includedContent").load("footer.html");
+        });
+    </script>
+    <!-- /Script para añadir el Footer-->
+
+</head>
+
+<body>
+
+    <!-- App Header-->
+    <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+        <div class="container">
+
+            <!-- Botton de Inicio-->
+            <a href="#" class="navbar-brand text-center">Sistema de Arrendamiento</a>
+            <!-- /Botton de Inicio-->
+
+            <!-- Botton de usuario-->
+            <div class="collapse navbar-collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <!-- Nombre de usuario-->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>&nbsp; Usuario &nbsp;</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <!-- /Nombre de usuario-->
+
+                        <!-- contenido del boton-->
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <!-- icono grande -->
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <span class="glyphicon glyphicon-user icon-size"></span>
+                                            </p>
+                                        </div>
+                                        <!-- Nombre, email y boton de cuenta -->
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>Nombre y Apellido</strong></p>
+                                            <p class="text-left small">email@dominio.com</p>
+                                            <p class="text-left">
+                                                <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- linea divisora -->
+                            <li class="divider"></li>
+                            <!-- /linea divisora -->
+
+                            <!-- boton cerrar sesion -->
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block"><b>Cerrar Sesion</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- /boton cerrar sesion -->
+
+                        </ul>
+                        <!-- /contenido del boton-->
+
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- /Botton de usuario-->
+
+        </div>
+    </header>
+    <!-- /App Header-->
+
+
+    <!-- contenido de la aplicacion -->
+    <div id="wrapper" class="content">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <b>Menu</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="mensaje_inquilino.html">Mensajes</a>
+                </li>
+                <li>
+                    <a href="#">Estado y Resolucion</a>
+                </li>
+                <li>
+                    <a href="#">Datos del Arrendador</a>
+                </li>
+                <li> 
+                    <a href="notificacion_inquilino.html">Notificaciones Recibidas</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /#sidebar -->
+
+        <!-- Contenido de app -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="clearfix separator" style="margin: 15px"></div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <div class="input-group">
+
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <input type="text" class="form-control" name="x" placeholder="Buscar Arrendador">
+
+                            <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Search Bar -->
+
+        <!-- break line to separate elements using bootstrap-->
+        <div class="clearfix separator" style="margin: 15px"></div>
+
+        <!-- Los resultados de la busqueda deberan mostrarse alimentando una tabla como esta asi. -->
+
+
+        <!-- Control de inquilinos -->
+        <div class="container">
+
+            <!-- Tabla de inquilinos -->
+            <div class="well">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="glyphicon glyphicon-th-list" aria-hidden="true"></th>
+                            <th>#</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>1</td>
+                            <td>Chris</td>
+                            
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /Tabla de mensajes -->
+
+<a href="#" class="btn btn-default" id="notificacion">Enviar Mensaje</a>
+            <!-- Paginacion -->
+            <div style="text-align: center">
+                <ul class="pagination">
+                    <li><a href="#">Prev.</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Sig.</a></li>
+                </ul>
+            </div>
+            <!-- /Paginacion -->
+
+
+
+        </div>
+        <!-- Control de mensajes -->
+                        <br><br>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#contenido de la aplicacion -->
+
+    </div>
+    <!-- /contenido de la aplicacion -->
+
+
+    <!-- App Footer-->
+    <div id="includedContent"></div>
+    <!-- /App Footer-->
+
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#contenido de la aplicacion -->
+
+    </div>
+    <!-- /contenido de la aplicacion -->
+
+
+    <!-- App Footer-->
+    <div id="includedContent"></div>
+    <!-- /App Footer-->
+
+</body>
+
+<!-- Script del menu -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+<!-- /Script del menu -->
+
+</html>
