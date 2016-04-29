@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sistema de Arrendamiento</title>
+    <meta name="Sistema de Arrendamiento">
+    <meta name="Descripción" content="Programa para administrar propiedades.">
+    <!-- CSS and BOOTSTRAP (Los archivos deben tener este preciso orden para funcionar correctamente)-->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="css/bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+
+    <!-- Script para añadir el Footer-->
+    <script>
+        $(function() {
+            $("#includedContent").load("footer.html");
+        });
+    </script>
+    <!-- /Script para añadir el Footer-->
+
+</head>
+
+<body>
+
+    <!-- App Header-->
+    <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+        <div class="container">
+
+            <!-- Botton de Inicio-->
+            <a href="#" class="navbar-brand text-center">Sistema de Arrendamiento</a>
+            <!-- /Botton de Inicio-->
+
+            <!-- Botton de usuario-->
+            <div class="collapse navbar-collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <!-- Nombre de usuario-->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>&nbsp; Usuario &nbsp;</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <!-- /Nombre de usuario-->
+
+                        <!-- contenido del boton-->
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <!-- icono grande -->
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <span class="glyphicon glyphicon-user icon-size"></span>
+                                            </p>
+                                        </div>
+                                        <!-- Nombre, email y boton de cuenta -->
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>Nombre y Apellido</strong></p>
+                                            <p class="text-left small">email@dominio.com</p>
+                                            <p class="text-left">
+                                                <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- linea divisora -->
+                            <li class="divider"></li>
+                            <!-- /linea divisora -->
+
+                            <!-- boton cerrar sesion -->
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block"><b>Cerrar Sesion</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- /boton cerrar sesion -->
+
+                        </ul>
+                        <!-- /contenido del boton-->
+
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- /Botton de usuario-->
+
+        </div>
+    </header>
+    <!-- /App Header-->
+
+
+    <!-- contenido de la aplicacion -->
+    <div id="wrapper" class="content">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <b>Menu</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dar de alta Propiedad</a>
+                </li>
+                <li>
+                    <a href="#">Asignar Inquilino a Propiedad</a>
+                </li>
+                <li> <!-- Recibir mensajes , mensajes filtrados-->
+                    <a href="mensajes_arrendador.html">Mensajes</a>
+                </li>
+                <li>
+                    <a href="notificacion_arrendador.html">Notificar a Inquilino</a>
+                </li>
+                <li>
+                    <a href="estado_propiedades.html">Estado de las Propiedades</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar -->
+
+        <!-- Contenido de app -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Panel de acction de la aplicacion</h1>
+                        <p><b>Aqui iria en si el contenido de la apliación.</b></p>
+                        <p>Esta app tiene un menu al costado derecho. <br><br> El menu aparece cerrado en pantallas pequeñas y aborto en pantallas grandes. <br><br> Para abrir o cerrarlo, puedes usar el boton de arriba.</p>
+                        <p>Manten todo el contenido dentro de el div <code>#page-content-wrapper</code>.</p>
+                        <br><br>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#contenido de la aplicacion -->
+
+    </div>
+    <!-- /contenido de la aplicacion -->
+
+
+    <!-- App Footer-->
+    <div id="includedContent"></div>
+    <!-- /App Footer-->
+
+</body>
+
+<!-- Script del menu -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+<!-- /Script del menu -->
+
+</html>
