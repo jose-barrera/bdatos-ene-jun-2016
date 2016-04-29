@@ -18,12 +18,12 @@ class Property extends Model
 		return $this->belongsTo('App\Models\User', 'lessor_id');
 	}
 
-	public function property_group()
+	public function propertyGroup()
 	{
 		return $this->belongsTo('App\Models\PropertyGroup', 'property_group_id');
 	}
 
-	public function current_rent()
+	public function currentRent()
 	{
 		return $this->hasOne('App\Models\Rent', 'property_id');
 	}

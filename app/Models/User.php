@@ -29,7 +29,7 @@ class User extends BaseUser
 
 
 
-	public function full_name()
+	public function fullName()
 	{
 		return "$this->first_name $this->last_name";
 	}
@@ -40,37 +40,37 @@ class User extends BaseUser
 			'user_id', 'role_id');
 	}
 
-	public function messages_as_tenant()
+	public function messagesAsTenant()
 	{
 		return $this->hasMany('App\Models\Message', 'tenant_id');
 	}
 	
-	public function messages_as_holder()
+	public function messagesAsHolder()
 	{
 		return $this->hasMany('App\Models\Message', 'holder_id');
 	}
 
-	public function messages_as_lessor()
+	public function messagesAsLessor()
 	{
 		return $this->hasMany('App\Models\Message', 'lessor_id');
 	}
 
-	public function properties_as_lessor()
+	public function propertiesAsLessor()
 	{
 		return $this->hasMany('App\Models\Property', 'lessor_id');
 	}
 
-	public function rents_as_tenant()
+	public function rentsAsTenant()
 	{
 		return $this->hasMany('App\Models\Rent', 'tenant_id');
 	}
 
-	public function rents_as_holder()
+	public function rentsAsHolder()
 	{
 		return $this->hasMany('App\Models\Rent', 'holder_id');
 	}
 
-	public function rents_as_lessor()
+	public function rentsAsLessor()
 	{
 		return $this->hasMany('App\Models\Rent', 'lessor_id');
 	}
