@@ -13,8 +13,10 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
