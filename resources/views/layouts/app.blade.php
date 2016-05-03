@@ -13,7 +13,9 @@
 
     <!-- Styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <body id="app-layout">
@@ -74,7 +76,7 @@
                                                     </div>
                                                     <!-- Nombre, email y boton de cuenta -->
                                                     <div class="col-sm-8">
-                                                        <p class="text-left"><strong>{{ Auth::user()->full_name() }}</strong></p>
+                                                        <p class="text-left"><strong>{{ Auth::user()->fullName() }}</strong></p>
                                                         <p class="text-left small">{{ Auth::user()->email }}</p>
                                                         <p class="text-left">
                                                             <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
