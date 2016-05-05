@@ -11,9 +11,13 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <!-- Styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css">
 
 </head>
 <body id="app-layout">
@@ -29,8 +33,13 @@
                     <span class="icon-bar"></span>
                 </button>
 
+                <!-- Sidebar toggle button -->
+                <a id="app-sidebar-toggle" class="navbar-brand">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </a>
+
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('index') }}">
                     Sistema de Arrendamiento
                 </a>
             </div>
@@ -38,17 +47,20 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li>
+                        <!-- Navbar options -->
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                         <!-- Botton de usuario-->
+                         <!-- Boton de usuario-->
                         <div class="collapse navbar-collapse">
 
                             <ul class="nav navbar-nav navbar-right">
@@ -74,7 +86,7 @@
                                                     </div>
                                                     <!-- Nombre, email y boton de cuenta -->
                                                     <div class="col-sm-8">
-                                                        <p class="text-left"><strong>{{ Auth::user()->full_name() }}</strong></p>
+                                                        <p class="text-left"><strong>{{ Auth::user()->fullName() }}</strong></p>
                                                         <p class="text-left small">{{ Auth::user()->email }}</p>
                                                         <p class="text-left">
                                                             <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
@@ -99,13 +111,9 @@
                                                 </div>
                                             </div>
                                         </li>
-
                                     </ul>
-
                                 </li>
-
                             </ul>
-
                         </div>
                     @endif
                 </ul>
@@ -113,26 +121,82 @@
         </div>
     </nav>
 
-    @yield('content')
-    
+    <div id="wrapper" class="content toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                @if(Auth::check())
+                    <!-- Opciones para arrendador -->
+                    @if(Auth::user()->hasRole('lessor'))
+                        <li class="sidebar-brand">
+                            <b>Arrendador</b>
+                        </li>
+                        <li>
+                            <a href="#">Dar de alta Propiedad</a>
+                        </li>
+                        <li>
+                            <a href="#">Asignar Inquilino a Propiedad</a>
+                        </li>
+                        <li>
+                            <a href="mensajes_arrendador.html">Mensajes</a>
+                        </li>
+                        <li>
+                            <a href="notificacion_arrendador.html">Notificar a Inquilino</a>
+                        </li>
+                        <li>
+                            <a href="estado_propiedades.html">Estado de las Propiedades</a>
+                        </li>
+                    @endif
 
-    <footer class="navbar navbar-default navbar-fixed-bottom">
+                    <!-- Opciones para arrendatario -->
+                    @if(Auth::user()->hasRole('holder'))
+                        <li class="sidebar-brand">
+                            <b>Arrendatario</b>
+                        </li>
+                    @endif
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="/">© {{ date("Y") }} Nombre de la Compañia</a></li>
-                    <li><a href="#">Terminos de servicio</a></li>
-                    <li><a href="#">Privacidad</a></li>
-                </ul>
-            </div>
+                    <!-- Opciones para inquilino -->
+                    @if(Auth::user()->hasRole('tenant'))
+                        <li class="sidebar-brand">
+                            <b>Inquilino</b>
+                        </li>
+                    @endif
+                @else
+                    <li>Nothing to show here.</li>
+                @endif
+
+            </ul>
         </div>
+        <!-- /#sidebar -->
+    
+    <div id="page-content-wrapper">
+        @yield('content')
+    </div>
+    
     </div>
 
+    <footer class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="{{ route('index') }}">© {{ date("Y") }} Nombre de la Compañia</a></li>
+                        <li><a href="#">Terminos de servicio</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
-    <!-- JavaScripts -->
-    <script src="js/jquery-2.2.3.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
 </body>
+    <!-- JavaScripts -->
+    <script>
+        $('#app-sidebar-toggle').click(function() {
+            $('#wrapper').toggleClass('toggled');
+        });
+    </script>
+
+    @yield('scripts')
 </html>
+
