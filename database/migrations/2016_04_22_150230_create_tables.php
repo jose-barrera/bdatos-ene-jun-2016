@@ -60,6 +60,7 @@ class CreateTables extends Migration
 			$table->string('title');
 			$table->string('description');
 			$table->string('address');
+			$table->integer('postal_code');
 			$table->integer('type_id')->unsigned()->comment('Tipo de propiedad');
 			$table->integer('lessor_id')->unsigned()->comment('Arrendador');
 			$table->integer('property_group_id')->unsigned()->nullable()
