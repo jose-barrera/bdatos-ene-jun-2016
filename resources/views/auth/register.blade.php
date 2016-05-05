@@ -80,6 +80,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Roles</label>
+
+                            <div class="col-md-6">
+                                @foreach(App\Models\UserRole::all() as $role)
+                                    <input type="checkbox" name="roles" id="roles-{{ $role->id }}" value="{{ $role->id }}">
+                                    <label for="roles[{{ $role->id }}]">{{ ucfirst($role->key) }}</label>
+                                @endforeach
+
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

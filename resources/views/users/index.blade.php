@@ -58,18 +58,23 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->fullName() }}</td>
                     <td style="text-align: center">
-                        <a href="{{ route('users.destroy', []) }}" role="button" data-toggle="modal"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> </a>
+                        <a href="{{ route('users.edit', ['id' => $user->id ]) }}">
+                            <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                        </a>
                     </td>
                     <td style="text-align: center">
-                        <a href="#myModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
+                        {{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) }}
+                            <a href="#" onclick="if (confirm('Eliminar?')) $(this).closest('form').submit();">
+                                <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                            </a>
+                        {{ Form::close() }}
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    <!-- /Tabla de mensajes -->
-
+    <!-- /Tabla de arrendatarios -->
 
     <!-- Paginacion -->
     <div style="text-align: center">
@@ -84,24 +89,7 @@
     </div>
     <!-- /Paginacion -->
 
-
-    <!-- Controles de confirmacion (No funcionan bien) -->
-    <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style=" position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%); ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel" style="text-align: center">Confirmación</h3>
-        </div>
-        <div class="modal-body">
-            <p class="error-text">¿Seguro que deseas eliminar este arrendatario?</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-            <button class="btn btn-danger" data-dismiss="modal">Eliminar</button>
-        </div>
-    </div>
-    <!-- /Controles de confirmacion -->
-
 </div>
-<!-- Control de mensajes -->
+<!-- Control de arrendatarios -->
 
 @endsection
