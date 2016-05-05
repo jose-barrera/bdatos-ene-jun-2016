@@ -79,4 +79,13 @@ class User extends BaseUser
 	{
 		return $this->hasMany('App\Models\Notification', 'lessor_id');
 	}
+
+	public function hasRole($role_key)
+	{
+		foreach($this->roles()->get() as $role) {
+			if ($role->key === $role_key)
+				return true;
+		}
+		return false;
+	}
 }
