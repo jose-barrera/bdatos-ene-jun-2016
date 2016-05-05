@@ -25,7 +25,6 @@ class CreateTables extends Migration
 			$table->rememberToken();
 			$table->timestamps();
 
-			// $table->primary('id');
 		});
 
 		Schema::create('user_roles', function (Blueprint $table) {
@@ -34,7 +33,6 @@ class CreateTables extends Migration
 			$table->string('description');
 			$table->timestamps();
 
-			// $table->primary('id');
 		});
 
 		Schema::create('property_groups', function (Blueprint $table) {
@@ -43,7 +41,6 @@ class CreateTables extends Migration
 			$table->string('address');
 			$table->timestamps();
 
-			// $table->primary('id');
 		});
 
 		Schema::create('property_types', function (Blueprint $table) {
@@ -52,7 +49,6 @@ class CreateTables extends Migration
 			$table->string('description');
 			$table->timestamps();
 
-			// $table->primary('id');
 		});
 
 		Schema::create('properties', function (Blueprint $table) {
@@ -67,7 +63,6 @@ class CreateTables extends Migration
 				->comment('Opcional: Pertenece a un grupo de propiedad (propiedad multiple)');
 			$table->timestamps();
 
-			// $table->primary('id');
 			$table->foreign('type_id')->references('id')->on('property_types');
 			$table->foreign('lessor_id')->references('id')->on('users');
 			$table->foreign('property_group_id')->references('id')
@@ -80,7 +75,6 @@ class CreateTables extends Migration
 			$table->string('description');
 			$table->timestamps();
 
-			// $table->primary('id');
 		});
 
 		Schema::create('messages', function (Blueprint $table) {
@@ -96,7 +90,6 @@ class CreateTables extends Migration
 			$table->dateTime('sent_on');
 			$table->timestamps();
 
-			// $table->primary('id');
 			$table->foreign('tenant_id')->references('id')->on('users');
 			$table->foreign('holder_id')->references('id')->on('users');
 			$table->foreign('lessor_id')->references('id')->on('users');
@@ -110,7 +103,6 @@ class CreateTables extends Migration
 			$table->integer('lessor_id')->unsigned();
 			$table->timestamps();
 
-			// $table->primary('id');
 			$table->foreign('lessor_id')->references('id')->on('users');
 		});
 
@@ -131,7 +123,6 @@ class CreateTables extends Migration
 			$table->boolean('active');
 			$table->timestamps();
 
-			// $table->primary('id');
 			$table->foreign('property_id')->references('id')->on('properties');
 			$table->foreign('tenant_id')->references('id')->on('users');
 			$table->foreign('holder_id')->references('id')->on('users');

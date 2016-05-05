@@ -15,9 +15,15 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Styles -->
+<<<<<<< HEAD
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+=======
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+>>>>>>> fbf21325c9bb2f944c0c057e22f344a5f335bb5b
     <link href="css/app.css" rel="stylesheet" type="text/css">
     <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <body id="app-layout">

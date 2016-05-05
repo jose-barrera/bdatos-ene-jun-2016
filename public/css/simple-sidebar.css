@@ -74,8 +74,13 @@
 
 .sidebar-nav li a:hover {
     text-decoration: none;
+<<<<<<< HEAD
     color: #000;
     background: rgba(0,0,0,0.1);
+=======
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+>>>>>>> fbf21325c9bb2f944c0c057e22f344a5f335bb5b
 }
 
 .sidebar-nav li a:active,
