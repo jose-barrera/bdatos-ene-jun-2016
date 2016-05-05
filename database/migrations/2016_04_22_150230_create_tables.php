@@ -19,7 +19,7 @@ class CreateTables extends Migration
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->boolean('gender'); // Male = true, Female = false
-			$table->string('mobile_phone');
+			$table->string('mobile_phone')->nullable();
 			$table->string('home_phone')->nullable();
 			$table->string('office_phone')->nullable();
 			$table->rememberToken();
@@ -57,11 +57,13 @@ class CreateTables extends Migration
 
 		Schema::create('properties', function (Blueprint $table) {
 			$table->increments('id');
+			$table->string('title');
 			$table->string('description');
 			$table->string('address');
-			$table->integer('type_id')->unsigned();
+			$table->integer('type_id')->unsigned()->comment('Tipo de propiedad');
 			$table->integer('lessor_id')->unsigned()->comment('Arrendador');
-			$table->integer('property_group_id')->unsigned()->nullable();
+			$table->integer('property_group_id')->unsigned()->nullable()
+				->comment('Opcional: Pertenece a un grupo de propiedad (propiedad multiple)');
 			$table->timestamps();
 
 			// $table->primary('id');
