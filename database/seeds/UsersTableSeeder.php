@@ -2,17 +2,23 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\UserRole;
 
 class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * UserRolesTableSeeder must be run before this seeder.
      *
      * @return void
      */
     public function run()
     {
-        User::create([
+        $tenant = UserRole::where('key', 'tenant')->first();
+        $holder = UserRole::where('key', 'holder')->first();
+        $lessor = UserRole::where('key', 'lessor')->first();
+
+        $user = User::create([
         	'email' => 'user@example.com',
         	'password' => bcrypt('password'),
         	'first_name' => 'First',
@@ -20,5 +26,7 @@ class UsersTableSeeder extends Seeder
         	'gender' => true,
         	'mobile_phone' => 'phone'
         ]);
+
+        $user->roles()->saveMany([$tenant, $holder, $lessor]);
     }
 }
