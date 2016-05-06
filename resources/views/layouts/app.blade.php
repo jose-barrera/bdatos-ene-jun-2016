@@ -11,14 +11,15 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
-    <script src="js/jquery-2.2.3.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/jquery-2.2.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     <!-- Styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet" type="text/css">
-    <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/simple-sidebar.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link href="/css/simple-sidebar.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -134,19 +135,19 @@
                             <b>Arrendador</b>
                         </li>
                         <li>
-                            <a href="#">Dar de alta Propiedad</a>
+                            <a href="{{URL::action('LessorController@getRegisterProperty')}}">Dar de alta Propiedad</a>
                         </li>
                         <li>
                             <a href="#">Asignar Inquilino a Propiedad</a>
                         </li>
                         <li>
-                            <a href="mensajes_arrendador.html">Mensajes</a>
+                            <a href="{{URL::action('LessorController@getMessage')}}">Mensajes</a>
                         </li>
                         <li>
-                            <a href="notificacion_arrendador.html">Notificar a Inquilino</a>
+                            <a href="{{URL::action('LessorController@getNotification')}}">Notificar a Inquilino</a>
                         </li>
                         <li>
-                            <a href="estado_propiedades.html">Estado de las Propiedades</a>
+                            <a href="{{URL::action('LessorController@getStateProperty')}}">Estado de las Propiedades</a>
                         </li>
                     @endif
 
@@ -161,6 +162,18 @@
                     @if(Auth::user()->hasRole('tenant'))
                         <li class="sidebar-brand">
                             <b>Inquilino</b>
+                        </li>
+                        <li>
+                            <a href="{{URL::action('TenantsController@getMessage')}}">Mensajes</a>
+                        </li>
+                        <li>
+                            <a href="#">Estado y Resolucion</a>
+                        </li>
+                        <li>
+                            <a href="#">Datos del Arrendador</a>
+                        </li>
+                        <li> 
+                            <a href="{{URL::action('TenantsController@getNotification')}}">Notificaciones Recibidas</a>
                         </li>
                     @endif
                 @else
