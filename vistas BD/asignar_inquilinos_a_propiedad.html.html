@@ -1,0 +1,82 @@
+<DOCTYPE! HTML>
+
+    <html lang="es">
+
+    <head>
+
+
+        <meta charset="utf-8">
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <link href="searchStyle.css" type="text/css">
+
+    </head>
+
+
+
+    <body>
+
+
+        <!-- Esta es la barra de busqueda que se va a usar para buscar inquilinos -->
+
+        <!-- break line to separate elements using bootstrap-->
+        <div class="clearfix separator" style="margin: 15px"></div>
+
+
+        <!-- break line to separate elements using bootstrap-->
+        <div class="clearfix separator" style="margin: 15px"></div>
+
+        <!-- Los resultados de la busqueda deberan mostrarse alimentando una tabla como esta asi. -->
+
+
+        <!-- Control de inquilinos -->
+        <div class="container">
+
+           <!-- select form -->
+            <div class="row vertical-center-row" id="main" style="
+                        position: fixed;
+                        top: 25%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);">
+           
+           <p style="text-align: center; font-size: 1.5em">Selecciona el inquilino y a que propiedad deseas asignarlo.</p>
+           
+           <br>
+           
+           <div style="text-align: center">
+            <from>
+                <select class="from-control input-lg" name="selector_de_propiedades">
+                    <option value="">inquilino a asignar</option>> 
+                </select>
+                
+                <span class="glyphicon glyphicon-arrow-right"></span>
+                
+                <select class="from-control input-lg" name="selector_de_inquilino">
+                    <option value="">a que propiedad</option>> 
+                </select>
+            </from>
+            
+            <br>
+            <br>
+            <br>
+            
+            <button type="button" class="btn btn-primary">Asignar</button>
+            
+           </div> 
+        <!-- /select form -->
+        </div>
+
+
+        </div>
+        <!-- Control de mensajes -->
+
+
+
+
+    </body>
+
+    </html>
