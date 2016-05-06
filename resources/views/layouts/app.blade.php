@@ -91,7 +91,7 @@
                                                         <p class="text-left"><strong>{{ Auth::user()->fullName() }}</strong></p>
                                                         <p class="text-left small">{{ Auth::user()->email }}</p>
                                                         <p class="text-left">
-                                                            <a href="#" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
+                                                            <a href="{{ route('users.show', ['id' => Auth::user()->id]) }}" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
                                                         </p>
                                                     </div>
                                                 </div>
