@@ -1,6 +1,6 @@
-@extends('landlords.index')
+@extends('layouts.app')
 
-@section('content_landlords')
+@section('content')
 <div class="col-lg-12">
 	<div class="clearfix separator" style="margin: 15px"></div>
 
@@ -121,4 +121,4 @@
 		<!-- /contenedor de la tabla de propiedades -->
 		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
 	</div>
-	@endsection
+@endsection

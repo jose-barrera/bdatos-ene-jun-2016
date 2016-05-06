@@ -1,6 +1,6 @@
-@extends('landlords.index')
+@extends('layouts.app')
 
-@section('content_tenants')
+@section('content')
 <div class="col-lg-12">
 	<div class="clearfix separator" style="margin: 15px"></div>
 
