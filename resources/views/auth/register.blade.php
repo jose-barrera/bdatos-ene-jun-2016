@@ -13,7 +13,7 @@
                         <label class="col-md-4 control-label">First Name</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}">
+                            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
 
                             @if ($errors->has('first_name'))
                                 <span class="help-block">
@@ -27,11 +27,29 @@
                         <label class="col-md-4 control-label">Last Name</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}">
+                            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
 
                             @if ($errors->has('last_name'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('last_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Gender</label>
+
+                        <div class="col-md-6">
+                            <select class="form-control" name="gender" required>
+                                <option value="">Select</option>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+
+                            @if ($errors->has('gender'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('gender') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -55,7 +73,7 @@
                         <label class="col-md-4 control-label">Password</label>
 
                         <div class="col-md-6">
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control" name="password" required>
 
                             @if ($errors->has('password'))
                                 <span class="help-block">
@@ -69,7 +87,7 @@
                         <label class="col-md-4 control-label">Confirm Password</label>
 
                         <div class="col-md-6">
-                            <input type="password" class="form-control" name="password_confirmation">
+                            <input type="password" class="form-control" name="password_confirmation" required>
 
                             @if ($errors->has('password_confirmation'))
                                 <span class="help-block">
@@ -79,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">Roles</label>
 
                         <div class="col-md-6">
@@ -88,9 +106,9 @@
                                 <label for="roles[{{ $role->id }}]">{{ ucfirst($role->key) }}</label>
                             @endforeach
 
-                            @if ($errors->has('password_confirmation'))
+                            @if ($errors->has('roles'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    <strong>{{ $errors->first('roles') }}</strong>
                                 </span>
                             @endif
                         </div>
