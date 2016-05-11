@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-12">
-       <div class="clearfix separator" style="margin: 15px"></div>
-
-       <!-- Search Bar -->
-       <div class="search-bar">
+<div class="col-lg-12">
+    <div class="clearfix separator" style="margin: 15px"></div>
+    
+    <!-- Search Bar -->
+    <div class="search-bar">
         <div class="container">
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2">
@@ -79,7 +79,5 @@
 
     </div>
     <!-- Control de mensajes -->
-    <br><br>
-    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-    </div>
+</div>
 @endsection

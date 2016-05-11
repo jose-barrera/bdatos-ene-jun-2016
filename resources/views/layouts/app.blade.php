@@ -16,8 +16,6 @@
 
     <!-- Styles -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/simple-sidebar.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet" type="text/css">
     <link href="/css/simple-sidebar.css" rel="stylesheet" type="text/css">
 
@@ -125,6 +123,7 @@
     </nav>
 
     <div id="wrapper" class="content toggled">
+
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -183,10 +182,10 @@
             </ul>
         </div>
         <!-- /#sidebar -->
-    
-    <div id="page-content-wrapper">
-        @yield('content')
-    </div>
+
+        <div id="page-content-wrapper">
+            @yield('content')
+        </div>
     
     </div>
 

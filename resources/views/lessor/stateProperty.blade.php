@@ -119,6 +119,5 @@
 
 		</div>
 		<!-- /contenedor de la tabla de propiedades -->
-		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
 	</div>
 @endsection
