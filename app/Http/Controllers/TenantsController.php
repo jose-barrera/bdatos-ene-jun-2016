@@ -23,13 +23,18 @@ class TenantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex(){
+    public function getIndex()
+    {
         return view('welcome');
     }
-    public function getMessage(){
+    
+    public function getMessage()
+    {
     	return view('tenants.message');
     }
-    public function getNotification(){
+    
+    public function getNotification()
+    {
     	return view('tenants.notification');
     }
 }
