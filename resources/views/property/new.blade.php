@@ -6,7 +6,7 @@
 		<div class="panel-heading">Alta de Propiedades</div>
 		<div class="panel-body">
 			<form class="form-horizontal" role="form" method="POST"
-					action="{{ URL::action('LessorController@postRegisterProperty') }}">
+					action="{{ route('property.store') }}">
 				{!! csrf_field() !!}
 
 				<input type="hidden" name="lessor_id" value="{{ $user->id }}">
@@ -86,33 +86,15 @@
 					</div>
 				</div>
 
-				 {{-- <!-- <div class="form-group{{ $errors->has('lessor') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Arrendador<span style="color: red">*</span></label>
-
-					<div class="col-md-6">
-						<select class="form-control" name="lessor" required>
-							@foreach($lessors as $lessor)
-								<option value=" $lessor->value ">$lessor->value </option>
-							@endforeach
-						</select>
-
-						@if ($errors->has('lessor'))
-						<span class="help-block">
-							<strong>{{ $errors->first('lessor') }}</strong>
-						</span>
-						@endif
-					</div>
-				</div> --> --}}
-
 				<div class="form-group{{ $errors->has('property_group_id') ? ' has-error' : '' }}">
 					<label class="col-md-4 control-label">Grupo de Propiedades</label>
 
 					<div class="col-md-6">
 						<select class="form-control" name="property_group_id">
 							<option value="">Seleccionar</option>
-						@foreach($property_groups as $property_group)
+							@foreach($property_groups as $property_group)
 							<option value="{{ $property_group->id }}">{{ $property_group->description }}</option>
-						@endforeach
+							@endforeach
 						</select>
 
 						@if ($errors->has('property_group_id'))

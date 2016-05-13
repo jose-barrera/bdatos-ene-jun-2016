@@ -134,19 +134,19 @@
                             <b>Arrendador</b>
                         </li>
                         <li>
-                            <a href="{{URL::action('LessorController@getRegisterProperty')}}">Dar de alta Propiedad</a>
+                            <a href="{{ route('property.create') }}">Dar de alta Propiedad</a>
                         </li>
                         <li>
                             <a href="#">Asignar Inquilino a Propiedad</a>
                         </li>
                         <li>
-                            <a href="{{URL::action('LessorController@getMessage')}}">Mensajes</a>
+                            <a href="{{--URL::action('LessorController@getMessage')--}}">Mensajes</a>
                         </li>
                         <li>
-                            <a href="{{URL::action('LessorController@getNotification')}}">Notificar a Inquilino</a>
+                            <a href="{{--URL::action('LessorController@getNotification')--}}">Notificar a Inquilino</a>
                         </li>
                         <li>
-                            <a href="{{URL::action('LessorController@getStateProperty')}}">Estado de las Propiedades</a>
+                            <a href="{{--URL::action('LessorController@getStateProperty')--}}">Estado de las Propiedades</a>
                         </li>
                     @endif
 
@@ -163,7 +163,7 @@
                             <b>Inquilino</b>
                         </li>
                         <li>
-                            <a href="{{URL::action('TenantsController@getMessage')}}">Mensajes</a>
+                            <a href="{{--URL::action('TenantsController@getMessage')--}}">Mensajes</a>
                         </li>
                         <li>
                             <a href="#">Estado y Resolucion</a>
@@ -172,7 +172,7 @@
                             <a href="#">Datos del Arrendador</a>
                         </li>
                         <li> 
-                            <a href="{{URL::action('TenantsController@getNotification')}}">Notificaciones Recibidas</a>
+                            <a href="{{--URL::action('TenantsController@getNotification')--}}">Notificaciones Recibidas</a>
                         </li>
                     @endif
                 @else

@@ -17,9 +17,22 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
 
-Route::controller('lessor', 'LessorController');
-Route::controller('tenants', 'TenantsController');
+// Route::controller('lessors', 'LessorController');
+
+// Route::group(['prefix' => 'properties'], function () {
+// 	Route::get('/', 'PropertiesController@index');
+// 	Route::post('/', 'PropertiesController@store');
+// 	Route::get('/{id}', 'PropertiesController@show');
+// 	Route::get('/create', 'PropertiesController@create');
+// });
+
+// Route::controller('tenants', 'TenantsController');
+
+// Route::get('properties/{id}', 'PropertiesController@getIndex');
+// Route::controller('properties', 'PropertiesController');
 
 Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
+
+Route::resource('properties', 'PropertiesController');

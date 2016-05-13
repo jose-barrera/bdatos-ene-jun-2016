@@ -20,7 +20,7 @@ class LessorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth.lessor');
     }
 
     /**
@@ -31,6 +31,11 @@ class LessorController extends Controller
     public function getIndex()
     {
         return view('welcome');
+    }
+
+    public function getProperty($id)
+    {
+        return $id;
     }
 
     public function getRegisterProperty()
