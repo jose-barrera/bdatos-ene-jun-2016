@@ -5,10 +5,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Alta de Propiedades</div>
 		<div class="panel-body">
-			<form class="form-horizontal" role="form" method="POST"
-					action="{{ route('property.store') }}">
-				{!! csrf_field() !!}
-
+			{{ Form::open(['route' => 'properties.store', 'method' => 'POST', 'class' => 'form-horizontal']) }}
 				<input type="hidden" name="lessor_id" value="{{ $user->id }}">
 
 				<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -112,7 +109,7 @@
 						</button>
 					</div>
 				</div>
-			</form>
+			{{ Form::close() }}
 		</div>
 	</div>
 </div>

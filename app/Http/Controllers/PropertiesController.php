@@ -11,7 +11,7 @@ use App\Models\Property;
 use App\Models\PropertyGroup;
 use App\Models\PropertyType;
 
-class PropertyController extends Controller
+class PropertiesController extends Controller
 {
     /**
      * Create a new property controller instance.
@@ -20,7 +20,7 @@ class PropertyController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth.lessor', ['except' => ['index', 'show']]);
+        $this->middleware('auth.lessor', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -31,7 +31,7 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = Property::all();
-        return view('property.index', ['properties' => $properties]);
+        return view('properties.index', ['properties' => $properties]);
     }
 
     /**
@@ -44,7 +44,7 @@ class PropertyController extends Controller
         $property_groups = PropertyGroup::all();
         $property_types = PropertyType::all();
         $user = Auth::user();
-        return view('property.new', [
+        return view('properties.create', ['property' => new Property,
             'property_groups' => $property_groups,
             'property_types' => $property_types,
             'user' => $user]);
@@ -64,23 +64,18 @@ class PropertyController extends Controller
             'address' => 'required',
             'postal_code' => 'required|numeric',
             'type_id' => 'required|numeric',
-            'property_group_id' => '',
+            'property_group_id' => 'numeric',
             'lessor_id' => 'required|numeric']);
 
         if ($validator->passes() and Auth::id() === intval($request->get('lessor_id'))) {
+            if ($request->get('property_group_id') === '')
+                $request['property_group_id'] = null;
+            
             $property = Property::create($request->all());
-            // $property = new Property;
-            // $property->title = $request['title'];
-            // $property->description = $request['description'];
-            // $property->address = $request['address'];
-            // $property->postal_code = $request['postal_code'];
-            // $property->type_id = $request['type_id'];
-            // $property->property_group_id = $request['property_group_id'];
-            // $property->lessor_id = $request['lessor_id'];
-            // $property->save();
-            return redirect()->route('property.show', ['id' => $property->id]);
+
+            return redirect()->route('properties.show', ['id' => $property->id]);
         } else {
-            return redirect()->route('property.create')->withErrors($validator)->withInput();
+            return redirect()->route('properties.create')->withErrors($validator)->withInput();
         }
     }
 
@@ -93,7 +88,7 @@ class PropertyController extends Controller
     public function show($id)
     {
         $property = Property::findOrFail($id);
-        return view('property.show', ['property' => $property]);
+        return view('properties.show', ['property' => $property]);
     }
 
     /**

@@ -134,7 +134,7 @@
                             <b>Arrendador</b>
                         </li>
                         <li>
-                            <a href="{{ route('property.create') }}">Dar de alta Propiedad</a>
+                            <a href="{{ route('properties.create') }}">Dar de alta Propiedad</a>
                         </li>
                         <li>
                             <a href="#">Asignar Inquilino a Propiedad</a>
