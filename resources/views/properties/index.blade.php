@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -27,7 +29,7 @@
 
                             <!-- relleno de la tabla de propiedades -->
                             <tbody>
-                            	@foreach($properties as $property)
+                                @foreach($properties as $property)
                                 <tr data-toggle="collapse" data-target="#property-{{ $property->id }}" class="accordion-toggle">
                                     <td>
                                         <button class="btn btn-default btn-md"><span class="glyphicon glyphicon-chevron-down"></span></button>
@@ -50,7 +52,8 @@
                                                         <td>Graham's number</td>
                                                         <td>
                                                             <a href="#" class="btn btn-default btn-md">
-                                                                <i class="glyphicon glyphicon-pencil"></i></a>
+                                                                <i class="glyphicon glyphicon-pencil"></i>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                 </thead>
