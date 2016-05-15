@@ -133,20 +133,15 @@
                         <li class="sidebar-brand">
                             <b>Arrendador</b>
                         </li>
+                        <li><a href="{{ route('properties.index') }}">Propiedades</a>
                         <li>
                             <a href="{{ route('properties.create') }}">Dar de alta Propiedad</a>
-                        </li>
-                        <li>
-                            <a href="#">Asignar Inquilino a Propiedad</a>
                         </li>
                         <li>
                             <a href="{{--URL::action('LessorController@getMessage')--}}">Mensajes</a>
                         </li>
                         <li>
                             <a href="{{--URL::action('LessorController@getNotification')--}}">Notificar a Inquilino</a>
-                        </li>
-                        <li>
-                            <a href="{{--URL::action('LessorController@getStateProperty')--}}">Estado de las Propiedades</a>
                         </li>
                     @endif
 
@@ -171,7 +166,7 @@
                         <li>
                             <a href="#">Datos del Arrendador</a>
                         </li>
-                        <li> 
+                        <li>
                             <a href="{{--URL::action('TenantsController@getNotification')--}}">Notificaciones Recibidas</a>
                         </li>
                     @endif
@@ -186,7 +181,7 @@
         <div id="page-content-wrapper">
             @yield('content')
         </div>
-    
+
     </div>
 
     <footer class="navbar navbar-default navbar-fixed-bottom">
@@ -213,4 +208,3 @@
 
     @yield('scripts')
 </html>
-

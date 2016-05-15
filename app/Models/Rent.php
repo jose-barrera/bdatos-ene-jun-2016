@@ -8,6 +8,15 @@ class Rent extends Model
 {
 	protected $table = 'rents';
 
+	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'property_id', 'lessor_id', 'tenant_id', 'holder_id', 'active'
+    ];
+
 	public function property()
 	{
 		return $this->belongsTo('App\Models\Property', 'property_id');
