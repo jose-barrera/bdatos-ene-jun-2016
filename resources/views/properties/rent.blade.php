@@ -8,7 +8,7 @@
             <div class="panel-body">
                 {{ Form::open(['route' => ['properties.post_rent', $property->id], 'class' => 'form-horizontal']) }}
                     <input type="hidden" name="lessor_id" value="{{ Auth::id() }}">
-                    
+
                     <div class="form-group{{ $errors->has('tenant_id') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">Inquilino<span style="color: red">*</span></label>
 
@@ -29,12 +29,12 @@
                     </div>
 
                     <div class="form-group">
-    					<div class="col-md-6 col-md-offset-4">
-    						<button type="submit" class="btn btn-primary">
-    							<span class="glyphicon glyphicon-ok"></span> Guardar
-    						</button>
-    					</div>
-    				</div>
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-ok"></span> Guardar
+                            </button>
+                        </div>
+                    </div>
                 {{ Form::close() }}
             </div>
         </div>
