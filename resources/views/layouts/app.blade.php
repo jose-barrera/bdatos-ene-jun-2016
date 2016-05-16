@@ -179,6 +179,16 @@
         <!-- /#sidebar -->
 
         <div id="page-content-wrapper">
+
+            <!-- Flash messages -->
+            @if(Session::has('flash.message'))
+                <div class="alert alert-{{ Session::get('flash.level', 'info') }}">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ Session::get('flash.message') }}
+                </div>
+            @endif
+
+            <!-- Page content -->
             @yield('content')
         </div>
 
