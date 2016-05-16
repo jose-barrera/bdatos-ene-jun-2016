@@ -35,6 +35,10 @@ Route::auth();
 
 Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
 
-Route::get('/properties/{id}/rent', 'PropertiesController@getRent')->name('properties.get_rent');
-Route::post('/properties/{id}/rent', 'PropertiesController@postRent')->name('properties.post_rent');
+Route::get('/properties/{id}/rent', 'PropertiesController@getRent')
+    ->name('properties.get_rent');
+Route::post('/properties/{id}/rent', 'PropertiesController@postRent')
+    ->name('properties.post_rent');
+Route::delete('/properties/{id}/rent/delete', 'PropertiesController@deleteRent')
+    ->name('properties.delete_rent');
 Route::resource('properties', 'PropertiesController');
