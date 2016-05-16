@@ -156,6 +156,7 @@ return [
         App\Providers\BladeServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ValidatorServiceProvider::class,
 
         /*
          * Laravel Collective Service Providers...
