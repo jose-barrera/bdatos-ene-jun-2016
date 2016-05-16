@@ -78,7 +78,7 @@ class PropertiesController extends Controller
 
             $property = Property::create($request->all());
 
-            return redirect()->route('properties.show', ['id' => $property->id]);
+            return redirect()->route('properties.index');
         } else {
             return redirect()->route('properties.create')
                 ->withErrors($validator)->withInput();
@@ -128,7 +128,27 @@ class PropertiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $property = Property::findOrFail($id);
+
+        if ($property->lessor->id !== Auth::id()) {
+            Session::flash('flash.message', '"Solo el arrendador de la" .
+                " propiedad $id puede eliminarla!"');
+            Session::flash('flash.level', 'danger');
+            return redirect()->route('properties.index');
+        }
+
+        if ($property->currentRent()->exists()) {
+            Session::flash('flash.message', "La propiedad $id no puede ser" .
+                " eliminada dado que esta rentada actualmente.");
+            Session::flash('flash.level', 'danger');
+            return redirect()->route('properties.index');
+        }
+
+        $property->delete();
+
+        Session::flash('flash.message', "La propiedad $id fue eliminada con éxito!");
+        Session::flash('flash.level', 'success');
+        return redirect()->route('properties.index');
     }
 
     /**

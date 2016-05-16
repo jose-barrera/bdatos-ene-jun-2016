@@ -10,6 +10,12 @@
             <!-- Tabla de propiedades -->
             <div class="col-lg-12">
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="panel-title">Propiedades</span>
+                        <a href="{{ route('properties.create') }}" class="btn btn-primary btn-xs pull-right">
+                            <span class="glyphicon glyphicon-plus"></span> Nueva propiedad
+                        </a>
+                    </div>
                     <table class="table" style="border-collapse:collapse;">
                         <!-- cabeza de la tabla de propiedades -->
                         <thead>
@@ -31,7 +37,7 @@
                                 <td>
                                     <button data-toggle="collapse" data-target="#property-{{ $property->id }}"
                                             type="button" class="accordion-toggle btn btn-default btn-xs">
-                                        <span class="glyphicon glyphicon-minus"></span>
+                                        <span class="glyphicon glyphicon-triangle-bottom"></span>
                                     </button>
                                 </td>
                                 <td>{{ $property->id }}</td>
@@ -56,27 +62,48 @@
                                             {{ $tenant->fullName() }}
                                         </a></dd>
                                         @endif
+
+                                        @if($property->propertyGroup()->exists())
+                                        <dt>Grupo de propiedades</dt>
+                                        <dd>{{ $property->propertyGroup->description }}</dd>
+                                        @endif
                                     </dl>
 
                                     <!-- Acciones -->
                                     @if($property->lessor->id === Auth::id())
+                                        @if($rented)
+                                        <a onclick="if (confirm('Eliminar renta?')) $('#delete-rent-{{ $property->id }}').submit();"
+                                                class="btn btn-warning">
+                                            <span class="glyphicon glyphicon-trash"></span> Eliminar renta
+                                        </a>
+                                        @else
+                                        <a href="{{ route('properties.get_rent', ['id' => $property->id]) }}"
+                                                class="btn btn-primary">Rentar</a>
+                                        @endif
                                         <div class="btn-group">
-                                            @if($rented)
-                                            <a onclick="if (confirm('Eliminar renta?')) $('#delete-{{ $property->id }}').submit();"
-                                                class="btn btn-default">Eliminar renta</a>
-                                            @else
-                                            <a href="{{ route('properties.get_rent', ['id' => $property->id]) }}"
-                                                class="btn btn-default">Rentar</a>
-                                            @endif
+                                            <a href="{{ route('properties.edit', ['id' => $property->id]) }}"
+                                                    class="btn btn-default">
+                                                <span class="glyphicon glyphicon-pencil"></span> Editar propiedad
+                                            </a>
+                                            <a onclick="if (confirm('Eliminar propiedad?')) $('#delete-property-{{ $property->id }}').submit();"
+                                                    class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span> Eliminar propiedad
+                                            </a>
                                         </div>
 
-                                        <!-- Forma para borrar la propiedad -->
+                                        <!-- Forma oculta para borrar la renta -->
                                         @if($rented)
                                         {{ Form::open(['route' => ['properties.delete_rent', $property->id],
-                                            'method' => 'delete', 'id' => 'delete-'.$property->id,
+                                            'method' => 'delete', 'id' => 'delete-rent-'.$property->id,
                                             'style' => 'display: hidden;']) }}
                                         {{ Form::close() }}
                                         @endif
+
+                                        <!-- Forma oculta para borrar la propiedad -->
+                                        {{ Form::open(['route' => ['properties.destroy', 'id' => $property->id],
+                                            'method' => 'delete', 'id' => 'delete-property-'.$property->id,
+                                            'style' => 'display: hidden;']) }}
+                                        {{ Form::close() }}
                                     @endif
                                 </td>
                             </tr>
