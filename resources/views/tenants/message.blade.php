@@ -1,85 +1,68 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="/css/bootstrap-table.css" rel="stylesheet">
+@endsection
+@section('js')
+<script src="/js/bootstrap-table.js"></script>
+<script src="/js/bootstrap-table-export.js"></script>
+<script src="/js/tableExport.js"></script>
+@endsection
+
 @section('content')
-<div class="col-lg-12">
-	<div class="clearfix separator" style="margin: 15px"></div>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Mensajes Arrendador</div>
+            <div class="panel-body">
+            	<!-- Crear Mensaje -->
+                <div id="toolbar">
+                    <a href="#createMenssage" class="btn btn-primary">Enviar Mensaje</a>
+                </div>
+                <!-- Tabla de Mensajes Recibidos -->
+                <table data-toggle="table"
+                    data-toolbar="#toolbar"
+                    data-show-export="true" 
+                    data-search="true"
+                    data-show-columns="true"
+                    data-sort-name="fecha"
+                    data-sort-order="desc">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th data-field="nombre" data-sortable="true">Nombre</th>
+                            <th data-field="asunto" data-sortable="true">Asunto</th>
+                            <th>Mensaje</th>
+                            <th data-field="fecha" data-sortable="true">Fecha</th>
+                            <th style="width: 36px;">Opción</th>
+                        </tr>
+                    </thead>
 
-	<!-- Search Bar -->
-	<div class="search-bar">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-8 col-xs-offset-2">
-					<div class="input-group">
-
-						<input type="hidden" name="search_param" value="all" id="search_param">
-						<input type="text" class="form-control" name="x" placeholder="Buscar Arrendador">
-
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /Search Bar -->
-
-	<!-- break line to separate elements using bootstrap-->
-	<div class="clearfix separator" style="margin: 15px"></div>
-
-	<!-- Los resultados de la busqueda deberan mostrarse alimentando una tabla como esta asi. -->
-
-
-	<!-- Control de inquilinos -->
-	<div class="container">
-
-		<!-- Tabla de inquilinos -->
-		<div class="well">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="glyphicon glyphicon-th-list" aria-hidden="true"></th>
-						<th>#</th>
-						<th>Nombre</th>
-					</tr>
-				</thead>
-
-				<tbody>
-
-					<tr>
-						<td>
-							<input type="checkbox">
-						</td>
-						<td>1</td>
-						<td>Chris</td>
-						
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-		<!-- /Tabla de mensajes -->
-
-		<a href="#" class="btn btn-default" id="notificacion">Enviar Mensaje</a>
-		<!-- Paginacion -->
-		<div style="text-align: center">
-			<ul class="pagination">
-				<li><a href="#">Prev.</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">Sig.</a></li>
-			</ul>
-		</div>
-		<!-- /Paginacion -->
-
-
-
-	</div>
-	<!-- Control de mensajes -->
-	<br><br>
-	<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-</div>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Chris</td>
+                            <td>Agua</td>
+                            <td>No tengo servicio de agua en...</td>
+                            <td>10/01/2016</td>
+                            <td style="text-align: center">
+                                <a href="#myModal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>alan</td>
+                            <td>Agua</td>
+                            <td>No tengo servicio de agua en...</td>
+                            <td>10/02/2016</td>
+                            <td style="text-align: center">
+                                <a href="#Modal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Paginador -->
+                {{-- $notification->render() --}}
+            </div>
+        </div>
+    </div>
 @endsection

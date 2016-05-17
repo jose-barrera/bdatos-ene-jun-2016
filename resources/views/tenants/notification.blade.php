@@ -1,144 +1,64 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="/css/bootstrap-table.css" rel="stylesheet">
+@endsection
+@section('js')
+<script src="/js/bootstrap-table.js"></script>
+<script src="/js/bootstrap-table-export.js"></script>
+<script src="/js/tableExport.js"></script>
+@endsection
+
 @section('content')
-<div class="col-lg-12">
-	<div class="clearfix separator" style="margin: 15px"></div>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Notificación de Arrendador</div>
+            <div class="panel-body">
+                <!-- Tabla de Notificaciones Efectuadas -->
+                <table data-toggle="table"
+                    data-toolbar="#toolbar"
+                    data-show-export="true" 
+                    data-search="true"
+                    data-show-columns="true"
+                    data-sort-name="fecha"
+                    data-sort-order="desc">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>#</th>
+                            <th data-field="nombre" data-sortable="true">Nombre</th>
+                            <th>Mensaje</th>
+                            <th data-field="fecha" data-sortable="true">Fecha Enviada</th>
+                            <th style="width: 36px;">Opción</th>
+                        </tr>
+                    </thead>
 
-	<!-- Search Bar -->
-	<div class="search-bar">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-8 col-xs-offset-2">
-					<div class="input-group">
-
-						<!-- Filtrar por usuario -->
-						<div class="input-group-btn search-panel">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<span id="search_concept">Filtar por</span> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#Inquilino">Inquilino</a></li>
-								<li><a href="#Arrendatario">Arrendatario</a></li>
-							</ul>
-						</div>
-						<!-- /Filtrar por -->
-
-						<!-- Filtrar por mensaje-->
-						<div class="input-group-btn search-panel">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<span id="search_concept">Asunto/Contenido</span> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#Asunto">Asunto</a></li>
-								<li><a href="#Contenido">Contenido</a></li>
-							</ul>
-						</div>
-						<!-- /Filtrar por -->
-
-						<!-- Ordenar por -->
-						<div class="input-group-btn search-panel">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<span id="search_filter">Ordenar por</span> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#Recientes">Recientes</a></li>
-								<li><a href="#Antiguos">Antiguos</a></li>
-							</ul>
-						</div>
-						<!-- /Ordenar por -->
-
-						<input type="hidden" name="search_param" value="all" id="search_param">
-						<input type="text" class="form-control" name="x" placeholder="¿Que deseas buscar?">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /Search Bar -->
-
-	<!-- break line to separate elements using bootstrap-->
-	<div class="clearfix separator" style="margin: 15px"></div>
-
-	<!-- Los resultados de la busqueda deberan mostrarse alimentando una tabla como esta asi. -->
-
-
-	<!-- Control de mensajes -->
-	<div class="container">
-
-		<!-- Tabla de mensajes -->
-		<div class="well">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="glyphicon glyphicon-th-list" aria-hidden="true"></th>
-						<th>#</th>
-						<th>Arrendador</th>
-						<th>Nombre</th>
-						<th>Asunto</th>
-						<th>Notificacion</th>
-						<th style="width: 36px;">Opción</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-
-						<td>
-							<input type="checkbox">
-						</td>
-						<td>1</td>
-						<td>Arrendador</td>
-						<td>Chris</td>
-						<td>Renta</td>
-						<td>Paga la renta.</td>
-						<td style="text-align: center">
-							<a href="#myModal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-		<!-- /Tabla de mensajes -->
-
-
-		<!-- Paginacion -->
-		<div style="text-align: center">
-			<ul class="pagination">
-				<li><a href="#">Prev.</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">Sig.</a></li>
-			</ul>
-		</div>
-		<!-- /Paginacion -->
-
-
-		<!-- Controles de confirmacion (No funcionan bien) -->
-		<div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style=" position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%); ">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel" style="text-align: center">Confirmación</h3>
-			</div>
-			<div class="modal-body">
-				<p class="error-text">¿Seguro que deseas eliminar este mensaje?</p>
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-				<button class="btn btn-danger" data-dismiss="modal">Eliminar</button>
-			</div>
-		</div>
-		<!-- /Controles de confirmacion -->
-
-	</div>
-	<!-- Control de mensajes -->
-
-	<br><br>
-	<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-</div>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>1</td>
+                            <td>Chris</td>
+                            <td>Se arreparado medidores 1,4,7...</td>
+                            <td>10/01/2016</td>
+                            <td style="text-align: center">
+                                <a href="#myModal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>2</td>
+                            <td>alan</td>
+                            <td>Se arreparado medidores 1,4,7...</td>
+                            <td>10/02/2016</td>
+                            <td style="text-align: center">
+                                <a href="#Modal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Paginador -->
+                {{-- $notification->render() --}}
+            </div>
+        </div>
+    </div>
 @endsection

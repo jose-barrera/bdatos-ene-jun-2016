@@ -13,11 +13,12 @@
 
     <script src="/js/jquery-2.2.3.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-
+    @yield('js')
     <!-- Styles -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
     <link href="/css/simple-sidebar.css" rel="stylesheet" type="text/css">
+    @yield('css')
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -33,12 +34,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Sidebar toggle button -->
-                <a id="app-sidebar-toggle" class="navbar-brand">
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </a>
-
+                @if (!Auth::guest())
+                    <!-- Sidebar toggle button -->
+                    <a id="app-sidebar-toggle" class="navbar-brand">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </a>
+                @endif
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ route('index') }}">
                     Sistema de Arrendamiento
@@ -58,8 +59,8 @@
 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Iniciar Sesión</a></li>
+                        <li><a href="{{ url('/register') }}">Registarse</a></li>
                     @else
                          <!-- Boton de usuario-->
                         <div class="collapse navbar-collapse">
@@ -170,8 +171,6 @@
                             <a href="{{--URL::action('TenantsController@getNotification')--}}">Notificaciones Recibidas</a>
                         </li>
                     @endif
-                @else
-                    <li>Nothing to show here.</li>
                 @endif
 
             </ul>
