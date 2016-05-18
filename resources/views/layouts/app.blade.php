@@ -58,10 +58,7 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Iniciar Sesión</a></li>
-                        <li><a href="{{ url('/register') }}">Registarse</a></li>
-                    @else
+                    @if (Auth::check())
                          <!-- Boton de usuario-->
                         <div class="collapse navbar-collapse">
 
@@ -199,7 +196,7 @@
                 <div class="col-lg-12">
                     <ul class="nav nav-pills nav-justified">
                         <li><a href="{{ route('index') }}">© {{ date("Y") }} Nombre de la Compañia</a></li>
-                        <li><a href="#">Terminos de servicio</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
                         <li><a href="#">Privacidad</a></li>
                     </ul>
                 </div>
