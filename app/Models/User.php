@@ -12,8 +12,9 @@ class User extends BaseUser
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'first_name', 'last_name', 'gender',
-        'mobile_phone', 'home_phone', 'office_phone'
+        'email', 'password', 'first_name', 'first_last_name',
+		'second_last_name', 'gender', 'mobile_phone',
+		'home_phone', 'office_phone'
     ];
 
     /**
@@ -27,11 +28,16 @@ class User extends BaseUser
 
 	protected $table = 'users';
 
-
-
-	public function fullName()
+	/**
+	 * Dynamic full_name field.
+	 * @return string
+	 */
+	public function getFullNameAttribute()
 	{
-		return "$this->first_name $this->last_name";
+		if (isset($this->second_last_name))
+			return "$this->first_name $this->first_last_name" .
+				" $this->second_last_name";
+		return "$this->first_name $this->first_last_name";
 	}
 
 	public function roles()
@@ -44,7 +50,7 @@ class User extends BaseUser
 	{
 		return $this->hasMany('App\Models\Message', 'tenant_id');
 	}
-	
+
 	public function messagesAsHolder()
 	{
 		return $this->hasMany('App\Models\Message', 'holder_id');

@@ -9,8 +9,9 @@
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                     {!! csrf_field() !!}
 
+                    <!-- Nombre(s) -->
                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">First Name</label>
+                        <label class="col-md-4 control-label">Nombre(s)</label>
 
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
@@ -23,22 +24,38 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Last Name</label>
+                    <!-- Primer apellido -->
+                    <div class="form-group{{ $errors->has('first_last_name') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Primer Apellido</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
+                            <input type="text" class="form-control" name="first_last_name" value="{{ old('first_last_name') }}" required>
 
-                            @if ($errors->has('last_name'))
+                            @if ($errors->has('first_last_name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('last_name') }}</strong>
+                                    <strong>{{ $errors->first('first_last_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Segundo apellido -->
+                    <div class="form-group{{ $errors->has('second_last_name') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Segundo Apellido</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="second_last_name" value="{{ old('second_last_name') }}">
+
+                            @if ($errors->has('second_last_name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('second_last_name') }}</strong>
                                 </span>
                             @endif
                         </div>
                     </div>
 
                     <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Gender</label>
+                        <label class="col-md-4 control-label">Sexo</label>
 
                         <div class="col-md-6">
                             <select class="form-control" name="gender" required>
@@ -56,7 +73,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">E-Mail Address</label>
+                        <label class="col-md-4 control-label">E-Mail</label>
 
                         <div class="col-md-6">
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -69,8 +86,9 @@
                         </div>
                     </div>
 
+                    <!-- Contraseña -->
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Password</label>
+                        <label class="col-md-4 control-label">Contraseña</label>
 
                         <div class="col-md-6">
                             <input type="password" class="form-control" name="password" required>
@@ -83,8 +101,9 @@
                         </div>
                     </div>
 
+                    <!-- Repetir contraseña -->
                     <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Confirm Password</label>
+                        <label class="col-md-4 control-label">Repetir Contraseña</label>
 
                         <div class="col-md-6">
                             <input type="password" class="form-control" name="password_confirmation" required>
@@ -97,6 +116,7 @@
                         </div>
                     </div>
 
+                    <!-- Roles -->
                     <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">Roles</label>
 
@@ -114,10 +134,11 @@
                         </div>
                     </div>
 
+                    <!-- Boton de submit -->
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-btn fa-user"></i>Register
+                                <i class="fa fa-btn fa-user"></i> Registrar
                             </button>
                         </div>
                     </div>

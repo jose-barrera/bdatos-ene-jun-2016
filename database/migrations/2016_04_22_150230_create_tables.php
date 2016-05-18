@@ -17,7 +17,8 @@ class CreateTables extends Migration
 			$table->string('email')->unique();
 			$table->string('password');
 			$table->string('first_name');
-			$table->string('last_name');
+			$table->string('first_last_name');
+			$table->string('second_last_name')->nullable();
 			$table->boolean('gender'); // Male = true, Female = false
 			$table->string('mobile_phone')->nullable();
 			$table->string('home_phone')->nullable();
@@ -37,6 +38,7 @@ class CreateTables extends Migration
 
 		Schema::create('property_groups', function (Blueprint $table) {
 			$table->increments('id');
+			$table->string('alias');
 			$table->string('description');
 			$table->string('address');
 			$table->timestamps();
@@ -53,7 +55,7 @@ class CreateTables extends Migration
 
 		Schema::create('properties', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('title');
+			$table->string('alias');
 			$table->string('description');
 			$table->string('address');
 			$table->integer('postal_code');
@@ -120,7 +122,8 @@ class CreateTables extends Migration
 			$table->integer('tenant_id')->unsigned()->comment('Inquilino');
 			$table->integer('holder_id')->unsigned()->comment('Arrendatario');
 			$table->integer('lessor_id')->unsigned()->comment('Arrendador');
-			$table->boolean('active');
+			$table->date('expires')->nullable()
+				->comment('Dejar nulo para rentas de duracion indefinida.');
 			$table->timestamps();
 
 			$table->foreign('property_id')->references('id')->on('properties');
