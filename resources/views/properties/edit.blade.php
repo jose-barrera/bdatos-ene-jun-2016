@@ -52,15 +52,6 @@
                         </div>
                     </div>
 
-                    <!-- Grupo de propiedades -->
-                    <div class="form-group">
-                        {{ Form::label('property_group_id', 'Grupo de propiedades', ['class' => 'col-md-4 control-label']) }}
-                        <div class="col-md-6">
-                            {{ Form::select('property_group_id', App\Models\PropertyGroup::pluck('description', 'id'),
-                                null, ['class' => 'form-control']) }}
-                        </div>
-                    </div>
-
                     <div class="col-md-6 col-md-offset-4">
                         {{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
                     </div>

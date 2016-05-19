@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\Models\Property;
-use App\Models\PropertyGroup;
 use App\Models\PropertyType;
 use App\Models\Rent;
 use App\Models\User;
@@ -48,11 +47,9 @@ class PropertiesController extends Controller
      */
     public function create()
     {
-        $property_groups = PropertyGroup::all();
         $property_types = PropertyType::all();
         $user = Auth::user();
         return view('properties.create', ['property' => new Property,
-            'property_groups' => $property_groups,
             'property_types' => $property_types,
             'user' => $user]);
     }
@@ -71,13 +68,9 @@ class PropertiesController extends Controller
             'address' => 'required',
             'postal_code' => 'required|numeric',
             'type_id' => 'required|numeric',
-            'property_group_id' => 'numeric',
             'lessor_id' => 'required|numeric']);
 
         if ($validator->passes() and Auth::id() === intval($request->get('lessor_id'))) {
-            if ($request->get('property_group_id') === '')
-                $request['property_group_id'] = null;
-
             $property = Property::create($request->all());
 
             return redirect()->route('properties.index');
@@ -197,9 +190,8 @@ class PropertiesController extends Controller
 
         $validator = Validator::make($request->all(), [
             'property_id' => 'required|numeric|equals:' . $property->id,
-            'lessor_id' => 'required|numeric|equals:' . $property->lessor->id,
-            'holder_id' => 'numeric',
             'tenant_id' => 'required|numeric',
+            'holder_id' => 'numeric',
             'expires' => 'date'
         ], ['lessor_id.equals' => 'The :attribute field must match the' .
             ' property lessor\'s id']);

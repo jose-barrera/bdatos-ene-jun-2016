@@ -8,19 +8,23 @@ class Message extends Model
 {
 	protected $table = 'mesages';
 
-	public function tenant()
+	/**
+	 * Returns a bool expressing whether the message has been read.
+	 * @return bool
+	 */
+	public function getReadAttribute()
 	{
-		return $this->belongsTo('App\Models\User', 'tenant_id');
+		return isset($this->attributes['read_on']);
 	}
 
-	public function holder()
+	public function sender()
 	{
-		return $this->belongsTo('App\Models\User', 'holder_id');
+		return $this->belongsTo('App\Models\User', 'sender_id');
 	}
 
-	public function lessor()
+	public function receiver()
 	{
-		return $this->belongsTo('App\Models\User', 'lessor_id');
+		return $this->belongsTo('App\Models\User', 'receiver');
 	}
 
 	public function property()

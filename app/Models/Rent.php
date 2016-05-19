@@ -15,7 +15,7 @@ class Rent extends Model
      * @var array
      */
     protected $fillable = [
-        'property_id', 'lessor_id', 'tenant_id', 'holder_id', 'active'
+        'property_id', 'lessor_id', 'tenant_id', 'holder_id', 'expires'
     ];
 
 	/**
@@ -30,14 +30,19 @@ class Rent extends Model
 			'Y-m-d', $value);
 	}
 
+	public function getLessorAttribute()
+	{
+		return $this->property->lessor;
+	}
+
+	public function getLessorIdAttribute()
+	{
+		return $this->property->lessor->id;
+	}
+
 	public function property()
 	{
 		return $this->belongsTo('App\Models\Property', 'property_id');
-	}
-
-	public function tenant()
-	{
-		return $this->belongsTo('App\Models\User', 'tenant_id');
 	}
 
 	public function holder()
@@ -45,8 +50,8 @@ class Rent extends Model
 		return $this->belongsTo('App\Models\User', 'holder_id');
 	}
 
-	public function lessor()
+	public function tenant()
 	{
-		return $this->belongsTo('App\Models\User', 'lessor_id');
+		return $this->belongsTo('App\Models\User', 'tenant_id');
 	}
 }

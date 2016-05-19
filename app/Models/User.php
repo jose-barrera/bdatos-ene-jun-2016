@@ -46,22 +46,17 @@ class User extends BaseUser
 			'user_id', 'role_id');
 	}
 
-	public function messagesAsTenant()
+	public function sentMessages()
 	{
-		return $this->hasMany('App\Models\Message', 'tenant_id');
+		return $this->hasMany('App\Models\Message', 'sender_id');
 	}
 
-	public function messagesAsHolder()
+	public function receivedMessages()
 	{
-		return $this->hasMany('App\Models\Message', 'holder_id');
+		return $this->hasMany('App\Models\Message', 'receiver_id');
 	}
 
-	public function messagesAsLessor()
-	{
-		return $this->hasMany('App\Models\Message', 'lessor_id');
-	}
-
-	public function propertiesAsLessor()
+	public function properties()
 	{
 		return $this->hasMany('App\Models\Property', 'lessor_id');
 	}
@@ -79,11 +74,6 @@ class User extends BaseUser
 	public function rentsAsLessor()
 	{
 		return $this->hasMany('App\Models\Rent', 'lessor_id');
-	}
-
-	public function notifications()
-	{
-		return $this->hasMany('App\Models\Notification', 'lessor_id');
 	}
 
 	public function hasRole($role_key)

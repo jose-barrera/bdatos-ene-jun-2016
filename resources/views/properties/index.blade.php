@@ -72,11 +72,6 @@
                                             <dd>Indefinido</dd>
                                             @endif
                                         @endif
-
-                                        @if($property->propertyGroup()->exists())
-                                        <dt>Grupo de propiedades</dt>
-                                        <dd>{{ $property->propertyGroup->description }}</dd>
-                                        @endif
                                     </dl>
 
                                     <!-- Acciones -->

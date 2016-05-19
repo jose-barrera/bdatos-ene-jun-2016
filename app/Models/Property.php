@@ -10,7 +10,7 @@ class Property extends Model
 
 	protected $fillable = [
 		'alias', 'description', 'address', 'postal_code',
-		'type_id', 'lessor_id', 'property_group_id'
+		'type_id', 'lessor_id'
 	];
 
 	public function type()
@@ -21,11 +21,6 @@ class Property extends Model
 	public function lessor()
 	{
 		return $this->belongsTo('App\Models\User', 'lessor_id');
-	}
-
-	public function propertyGroup()
-	{
-		return $this->belongsTo('App\Models\PropertyGroup', 'property_group_id');
 	}
 
 	public function currentRent()

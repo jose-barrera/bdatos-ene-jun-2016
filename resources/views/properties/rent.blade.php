@@ -11,9 +11,6 @@
                     <!-- Propiedad -->
                     {{ Form::hidden('property_id', $property->id) }}
 
-                    <!-- Arrendador -->
-                    {{ Form::hidden('lessor_id', $property->lessor->id) }}
-
                     <!-- Renta actual -->
                     @if($property->currentRent()->exists())
                     <div class="form-group">
