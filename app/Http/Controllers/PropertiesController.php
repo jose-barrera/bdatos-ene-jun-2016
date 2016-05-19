@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Log;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +66,7 @@ class PropertiesController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            'alias' => 'required',
             'description' => '',
             'address' => 'required',
             'postal_code' => 'required|numeric',
@@ -194,9 +196,11 @@ class PropertiesController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
+            'property_id' => 'required|numeric|equals:' . $property->id,
             'lessor_id' => 'required|numeric|equals:' . $property->lessor->id,
             'holder_id' => 'numeric',
-            'tenant_id' => 'required|numeric'
+            'tenant_id' => 'required|numeric',
+            'expires' => 'date'
         ], ['lessor_id.equals' => 'The :attribute field must match the' .
             ' property lessor\'s id']);
 
@@ -208,11 +212,13 @@ class PropertiesController extends Controller
             if ($property->currentRent()->exists())
                 $property->currentRent()->delete();
 
-            // Register new rent.
-            if (!isset($request['holder_id']))
+            // Fix request data.
+            if($request['expires'] === '')
+                $request['expires'] = null;
+            if(!isset($request['holder_id']) or $request['holder_id'] === '')
                 $request['holder_id'] = $request['tenant_id'];
-            $request['property_id'] = $id;
-            $request['active'] = true;
+
+            // Register new rent.
             $rent = Rent::create($request->all());
 
             Session::flash('flash.message', 'La renta se registró con éxito!');

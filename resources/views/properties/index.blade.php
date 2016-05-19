@@ -4,9 +4,6 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <!-- break line to separate elements using bootstrap-->
-            <div class="clearfix separator" style="margin: 15px"></div>
-
             <!-- Tabla de propiedades -->
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -41,8 +38,8 @@
                                     </button>
                                 </td>
                                 <td>{{ $property->id }}</td>
-                                <td>{{ $property->title }}</td>
-                                <td>{{ $property->lessor->fullName() }}</td>
+                                <td>{{ $property->alias }}</td>
+                                <td>{{ $property->lessor->full_name }}</td>
                                 <td>{{ $rented ? 'Si' : 'No' }}</td>
                             </tr>
                             <tr class="accordian-body collapse" id="property-{{ $property->id }}">
@@ -55,12 +52,25 @@
                                         <dt>Descripción</dt>
                                         <dd>{{ $property->description }}</dd>
 
+                                        <dt>Tipo</dt>
+                                        <dd>{{ $property->type->description }}</dd>
+
                                         @if($rented)
                                         @define $tenant = $property->currentRent->tenant
-                                        <dt>Inquilino</dt>
-                                        <dd><a href="{{ route('users.show', ['id' => $tenant->id]) }}">
-                                            {{ $tenant->fullName() }}
-                                        </a></dd>
+
+                                            <div class="clearfix separator" style="margin: 15px"></div>
+
+                                            <dt>Inquilino</dt>
+                                            <dd><a href="{{ route('users.show', ['id' => $tenant->id]) }}">
+                                                {{ $tenant->full_name }}
+                                            </a></dd>
+
+                                            <dt>Expira</dt>
+                                            @if(isset($property->currentRent->expires))
+                                            <dd>{{ $property->currentRent->expires->toDateString() }}</dd>
+                                            @else
+                                            <dd>Indefinido</dd>
+                                            @endif
                                         @endif
 
                                         @if($property->propertyGroup()->exists())
@@ -71,6 +81,9 @@
 
                                     <!-- Acciones -->
                                     @if($property->lessor->id === Auth::id())
+
+                                        <div class="clearfix separator" style="margin: 15px"></div>
+
                                         @if($rented)
                                         <a onclick="if (confirm('Eliminar renta?')) $('#delete-rent-{{ $property->id }}').submit();"
                                                 class="btn btn-warning">
@@ -80,6 +93,7 @@
                                         <a href="{{ route('properties.get_rent', ['id' => $property->id]) }}"
                                                 class="btn btn-primary">Rentar</a>
                                         @endif
+
                                         <div class="btn-group">
                                             <a href="{{ route('properties.edit', ['id' => $property->id]) }}"
                                                     class="btn btn-default">

@@ -8,18 +8,11 @@
             <div class="panel-body">
                 {{ Form::model($property->currentRent, ['route' => ['properties.post_rent', $property->id], 'class' => 'form-horizontal']) }}
 
+                    <!-- Propiedad -->
+                    {{ Form::hidden('property_id', $property->id) }}
+
                     <!-- Arrendador -->
-                    <input type="hidden" name="lessor_id" value="{{ Auth::id() }}">
-                    @if($errors->has('lessor_id'))
-                    <div class="form-group has-error">
-                        <label class="col-md-4 control-label">Arrendador</label>
-                        <div class="col-md-6">
-                            <span class="help-block">
-                                <strong>{{ $errors->first('lessor_id') }}</strong>
-                            </span>
-                        </div>
-                    </div>
-                    @endif
+                    {{ Form::hidden('lessor_id', $property->lessor->id) }}
 
                     <!-- Renta actual -->
                     @if($property->currentRent()->exists())
@@ -32,22 +25,19 @@
                     @endif
 
                     <!-- Inquilino -->
-                    <div class="form-group{{ $errors->has('tenant_id') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Inquilino<span style="color: red">*</span></label>
-
+                    <div class="form-group">
+                        {{ Form::label('tenant_id', 'Inquilino', ['class' => 'control-label col-md-4']) }}
                         <div class="col-md-6">
-                            <select class="form-control" name="tenant_id">
-                                <option value="">Seleccionar</option>
-                                @foreach($tenants as $tenant)
-                                <option value="{{ $tenant->id }}">{{ $tenant->fullName() }}</option>
-                                @endforeach
-                            </select>
+                            {{ Form::select('tenant_id', $tenants->pluck('full_name', 'id'),
+                                null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
 
-                            @if ($errors->has('tenant_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('tenant_id') }}</strong>
-                            </span>
-                            @endif
+                    <!-- Fecha de expiracion -->
+                    <div class="form-group">
+                        {{ Form::label('expires', 'Fecha de Expiración', ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::date('expires', null, ['class' => 'form-control', 'format' => 'Y-m-d']) }}
                         </div>
                     </div>
 

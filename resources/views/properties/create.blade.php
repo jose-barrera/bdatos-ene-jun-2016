@@ -6,102 +6,50 @@
 		<div class="panel-heading">Alta de Propiedades</div>
 		<div class="panel-body">
 			{{ Form::open(['route' => 'properties.store', 'method' => 'POST', 'class' => 'form-horizontal']) }}
-				<input type="hidden" name="lessor_id" value="{{ $user->id }}">
+				{{ Form::hidden('lessor_id', $user->id )}}
 
-				<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Titulo<span style="color: red">*</span></label>
-
+				<!-- Alias -->
+				<div class="form-group">
+					{{ Form::label('alias', 'Alias', ['class' => 'control-label col-md-4']) }}
 					<div class="col-md-6">
-						<input type="text" class="form-control" name="title" value="{{ old('title') }}" required>
-
-						@if ($errors->has('title'))
-						<span class="help-block">
-							<strong>{{ $errors->first('title') }}</strong>
-						</span>
-						@endif
+						{{ Form::text('alias', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
-				<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Descripción<span style="color: red">*</span></label>
-
+				<!-- Descripcion -->
+				<div class="form-group">
+					{{ Form::label('description', 'Descripción', ['class' => 'control-label col-md-4']) }}
 					<div class="col-md-6">
-						<textarea class="form-control" name="description" required>{{ old('description') }}</textarea>
-
-						@if ($errors->has('description'))
-						<span class="help-block">
-							<strong>{{ $errors->first('description') }}</strong>
-						</span>
-						@endif
+						{{ Form::textarea('description', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
-				<div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Dirección<span style="color: red">*</span></label>
-
+				<!-- Direccion -->
+				<div class="form-group">
+					{{ Form::label('address', 'Dirección', ['class' => 'control-label col-md-4']) }}
 					<div class="col-md-6">
-						<input type="text" class="form-control" name="address" value="{{ old('address') }}" required>
-
-						@if ($errors->has('address'))
-						<span class="help-block">
-							<strong>{{ $errors->first('address') }}</strong>
-						</span>
-						@endif
+						{{ Form::textarea('address', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
-				<div class="form-group{{ $errors->has('postal_code') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Código Postal<span style="color: red">*</span></label>
-
+				<!-- Codigo postal -->
+				<div class="form-group">
+					{{ Form::label('postal_code', 'Código Postal', ['class' => 'control-label col-md-4']) }}
 					<div class="col-md-6">
-						<input type="number" class="form-control" name="postal_code" value="{{ old('postal_code') }}" required>
-
-						@if ($errors->has('postal_code'))
-						<span class="help-block">
-							<strong>{{ $errors->first('postal_code') }}</strong>
-						</span>
-						@endif
+						{{ Form::number('postal_code', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
-				<div class="form-group{{ $errors->has('type_id') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Tipo de Propiedad<span style="color: red">*</span></label>
-
+				<!-- Tipo de propiedad -->
+				<div class="form-group">
+					{{ Form::label('type_id', 'Tipo de propiedad', ['class' => 'control-label col-md-4']) }}
 					<div class="col-md-6">
-						<select class="form-control" name="type_id" required>
-							<option value="">Seleccionar</option>
-						@foreach($property_types as $property_type)
-							<option value="{{ $property_type->id }}">{{ $property_type->description }}</option>
-						@endforeach
-						</select>
-
-						@if ($errors->has('type_id'))
-						<span class="help-block">
-							<strong>{{ $errors->first('type_id') }}</strong>
-						</span>
-						@endif
+						{{ Form::select('type_id', $property_types->pluck('description', 'id'),
+							null, ['class' => 'form-control', 'placeholder' => 'Seleccionar...']) }}
 					</div>
 				</div>
 
-				<div class="form-group{{ $errors->has('property_group_id') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Grupo de Propiedades</label>
-
-					<div class="col-md-6">
-						<select class="form-control" name="property_group_id">
-							<option value="">Seleccionar</option>
-							@foreach($property_groups as $property_group)
-							<option value="{{ $property_group->id }}">{{ $property_group->description }}</option>
-							@endforeach
-						</select>
-
-						@if ($errors->has('property_group_id'))
-						<span class="help-block">
-							<strong>{{ $errors->first('property_group_id') }}</strong>
-						</span>
-						@endif
-					</div>
-				</div>
-
+				<!-- Boton de submit -->
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-4">
 						<button type="submit" class="btn btn-primary">

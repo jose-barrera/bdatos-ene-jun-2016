@@ -5,7 +5,7 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Editar propiedad: {{ $property->title }}</h3>
+                <h3 class="panel-title">Editar propiedad: {{ $property->alias }}</h3>
             </div>
             <div class="panel-body">
                 {{ Form::model($property, ['route' => ['properties.update', $property->id],
@@ -13,17 +13,17 @@
 
                     <!-- Alias -->
                     <div class="form-group">
-                        {{ Form::label('title', 'Alias', ['class' => 'col-md-4 control-label']) }}
+                        {{ Form::label('alias', 'Alias', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('title', null, ['class' => 'form-control']) }}
+                            {{ Form::text('alias', null, ['class' => 'form-control']) }}
                         </div>
                     </div>
 
                     <!-- Descripcion -->
                     <div class="form-group">
-                        {{ Form::label('title', 'Descripción', ['class' => 'col-md-4 control-label']) }}
+                        {{ Form::label('description', 'Descripción', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::textarea('title', null, ['class' => 'form-control']) }}
+                            {{ Form::textarea('description', null, ['class' => 'form-control']) }}
                         </div>
                     </div>
 

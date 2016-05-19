@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Rent extends Model
@@ -16,6 +17,18 @@ class Rent extends Model
     protected $fillable = [
         'property_id', 'lessor_id', 'tenant_id', 'holder_id', 'active'
     ];
+
+	/**
+	 * The attributes that should be mutated to dates.
+	 * @var [type]
+	 */
+	protected $dates = ['created_at', 'updated_at', 'expires'];
+
+	public function setExpiresAttribute($value)
+	{
+		$this->attributes['expires'] = Carbon::createFromFormat(
+			'Y-m-d', $value);
+	}
 
 	public function property()
 	{

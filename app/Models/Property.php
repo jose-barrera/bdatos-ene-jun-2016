@@ -9,7 +9,7 @@ class Property extends Model
 	protected $table = 'properties';
 
 	protected $fillable = [
-		'title', 'description', 'address', 'postal_code',
+		'alias', 'description', 'address', 'postal_code',
 		'type_id', 'lessor_id', 'property_group_id'
 	];
 
