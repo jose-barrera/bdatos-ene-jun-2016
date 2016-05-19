@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	if(Auth::guest())
+		return redirect('login');
+	else
+    	return view('welcome');
 })->name('index');
 
 Route::auth();
