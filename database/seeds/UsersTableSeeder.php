@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $tenant = UserRole::where('key', 'tenant')->first();
-        $holder = UserRole::where('key', 'holder')->first();
         $lessor = UserRole::where('key', 'lessor')->first();
 
         $user = User::create([
@@ -26,8 +25,6 @@ class UsersTableSeeder extends Seeder
             'second_last_name' => 'Second',
         	'gender' => true,
         	'mobile_phone' => 'phone'
-        ]);
-
-        $user->roles()->saveMany([$tenant, $holder, $lessor]);
+        ])->roles()->saveMany([$tenant, $lessor]);
     }
 }

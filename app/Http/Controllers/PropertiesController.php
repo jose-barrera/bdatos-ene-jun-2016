@@ -191,7 +191,6 @@ class PropertiesController extends Controller
         $validator = Validator::make($request->all(), [
             'property_id' => 'required|numeric|equals:' . $property->id,
             'tenant_id' => 'required|numeric',
-            'holder_id' => 'numeric',
             'expires' => 'date'
         ], ['lessor_id.equals' => 'The :attribute field must match the' .
             ' property lessor\'s id']);
@@ -207,8 +206,6 @@ class PropertiesController extends Controller
             // Fix request data.
             if($request['expires'] === '')
                 $request['expires'] = null;
-            if(!isset($request['holder_id']) or $request['holder_id'] === '')
-                $request['holder_id'] = $request['tenant_id'];
 
             // Register new rent.
             $rent = Rent::create($request->all());

@@ -102,14 +102,12 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->integer('property_id')->unsigned()->comment('Propiedad');
 			$table->integer('tenant_id')->unsigned()->comment('Inquilino');
-			$table->integer('holder_id')->unsigned()->comment('Arrendatario');
 			$table->date('expires')->nullable()
 				->comment('Dejar nulo para rentas de duracion indefinida.');
 			$table->timestamps();
 
 			$table->foreign('property_id')->references('id')->on('properties');
 			$table->foreign('tenant_id')->references('id')->on('users');
-			$table->foreign('holder_id')->references('id')->on('users');
 		});
 	}
 

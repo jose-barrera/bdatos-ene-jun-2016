@@ -18,11 +18,6 @@ class UserRolesTableSeeder extends Seeder
 		]);
 
 		UserRole::create([
-			'key' => 'holder',
-			'description' => 'Arrendatario',
-		]);
-
-		UserRole::create([
 			'key' => 'tenant',
 			'description' => 'Inquilino'
 		]);

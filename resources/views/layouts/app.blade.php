@@ -143,13 +143,6 @@
                         </li>
                     @endif
 
-                    <!-- Opciones para arrendatario -->
-                    @if(Auth::user()->hasRole('holder'))
-                        <li class="sidebar-brand">
-                            <b>Arrendatario</b>
-                        </li>
-                    @endif
-
                     <!-- Opciones para inquilino -->
                     @if(Auth::user()->hasRole('tenant'))
                         <li class="sidebar-brand">
