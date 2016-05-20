@@ -18,6 +18,10 @@ Route::get('/', function () {
         return redirect('messages');
 })->name('index');
 
+Route::get('terms', function () {
+    return view('terms');
+})->name('terms');
+
 Route::auth();
 
 Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
