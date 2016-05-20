@@ -184,8 +184,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="nav nav-pills nav-justified">
-                        <li><a href="{{ route('index') }}">© {{ date("Y") }} Nombre de la Compañia</a></li>
-                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="{{ route('index') }}">© {{ date("Y") }} Sistema de Arrendamiento</a></li>
+                        <li><a href="{{ route('terms') }}">Términos y Condiciones</a></li>
                         <li><a href="#">Privacidad</a></li>
                     </ul>
                 </div>
