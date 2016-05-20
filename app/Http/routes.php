@@ -15,7 +15,7 @@ Route::get('/', function () {
 	if(Auth::guest())
 		return redirect('login');
 	else
-    	return view('welcome');
+    	return redirect('message');
 })->name('index');
 
 Route::auth();
@@ -45,3 +45,5 @@ Route::post('/properties/{id}/rent', 'PropertiesController@postRent')
 Route::delete('/properties/{id}/rent/delete', 'PropertiesController@deleteRent')
     ->name('properties.delete_rent');
 Route::resource('properties', 'PropertiesController');
+
+Route::resource('message', 'LessorController');

@@ -1,83 +1,91 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use Validator;
+	
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests;
-use App\Models\PropertyGroup;
-use App\Models\PropertyType;
-use App\Models\Property;
-
+use App\Models\User;
+use App\Models\Message;
+use Auth;
+use DB;
 class LessorController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth.lessor');
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
+	{   
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getIndex()
-    {
-        return view('welcome');
-    }
+		$messages=Message::select('sender_id','subject',DB::raw('substr(content, 0, 30)'),'content','read_on','created_at')->where('receiver_id',Auth::user()->id)->with(['sender'=>function ($query){
+			$query->select('id','first_name','first_last_name','second_last_name')->first();
+		}])->get();
+		return view('message.index',['messages'=>$messages]);
+	}
+	
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
+	{
+		return view('message.create');
+	}
 
-    public function getProperty($id)
-    {
-        return $id;
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		//
+	}
 
-    public function getRegisterProperty()
-    {
-        $property_groups = PropertyGroup::all();
-        $property_types = PropertyType::all();
-        $user = Auth::user();
-    	return view('lessor.registerProperty', [
-            'property_groups' => $property_groups,
-            'property_types' => $property_types,
-            'user' => $user]);	
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id)
+	{
+		//
+	}
 
-    public function postRegisterProperty(Request $request)
-    {
-    	$validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => '',
-            'address' => 'required',
-            'postal_code' => 'required|numeric',
-            'type_id' => 'required|numeric',
-            'property_group_id' => 'numeric',
-            'lessor_id' => 'required|numeric']);
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
 
-        if ($validator->passes() and Auth::id() === intval($request->get('lessor_id'))) {
-            $property = Property::create($request->all());
-        } else
-            return redirect('lessor/register-property')->withErrors($validator)->withInput();
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id)
+	{
+		//
+	}
 
-    public function getMessage()
-    {
-    	return view('lessor.message');
-    }
-
-    public function getNotification()
-    {
-    	return view('lessor.notification');
-    }
-
-    public function getStateProperty()
-    {
-    	return view('lessor.stateProperty');
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
 }

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-	protected $table = 'mesages';
-
+	protected $table = 'messages';
+	protected $fillable = [
+		'sender_id','receiver_id','property_id','category_id','subject','content','read_on'
+	];
 	/**
 	 * Returns a bool expressing whether the message has been read.
 	 * @return bool

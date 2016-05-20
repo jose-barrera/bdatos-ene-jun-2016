@@ -136,11 +136,9 @@
                             <a href="{{ route('properties.create') }}">Dar de alta Propiedad</a>
                         </li>
                         <li>
-                            <a href="{{--URL::action('LessorController@getMessage')--}}">Mensajes</a>
+                            <a href="{{ route('message.index') }}">Mensajes</a>
                         </li>
                         <li>
-                            <a href="{{--URL::action('LessorController@getNotification')--}}">Notificar a Inquilino</a>
-                        </li>
                     @endif
 
                     <!-- Opciones para inquilino -->
@@ -156,9 +154,6 @@
                         </li>
                         <li>
                             <a href="#">Datos del Arrendador</a>
-                        </li>
-                        <li>
-                            <a href="{{--URL::action('TenantsController@getNotification')--}}">Notificaciones Recibidas</a>
                         </li>
                     @endif
                 @endif
