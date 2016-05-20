@@ -60,7 +60,7 @@ class CreateTables extends Migration
 
 		Schema::create('message_categories', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('subject');
+			$table->string('key')->unique();
 			$table->string('description');
 			$table->timestamps();
 

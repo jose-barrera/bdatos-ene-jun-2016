@@ -1,13 +1,14 @@
 <?php
 namespace App\Http\Controllers;
-	
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Message;
 use Auth;
 use DB;
-class LessorController extends Controller
+
+class MessagesController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -15,14 +16,15 @@ class LessorController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
-	{   
-
-		$messages=Message::select('sender_id','subject',DB::raw('substr(content, 0, 30)'),'content','read_on','created_at')->where('receiver_id',Auth::user()->id)->with(['sender'=>function ($query){
-			$query->select('id','first_name','first_last_name','second_last_name')->first();
+	{
+		$messages = Message::select('sender_id', 'subject', DB::raw('substr(content, 0, 30)'),
+			'content', 'read_on', 'created_at')->where('receiver_id', Auth::user()->id)
+			->with(['sender'=>function ($query) {
+				$query->select('id', 'first_name', 'first_last_name', 'second_last_name')->first();
 		}])->get();
-		return view('message.index',['messages'=>$messages]);
+		return view('messages.index', ['messages'=>$messages]);
 	}
-	
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -30,7 +32,7 @@ class LessorController extends Controller
 	 */
 	public function create()
 	{
-		return view('message.create');
+		return view('messages.create');
 	}
 
 	/**

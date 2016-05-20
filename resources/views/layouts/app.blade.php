@@ -131,14 +131,15 @@
                         <li class="sidebar-brand">
                             <b>Arrendador</b>
                         </li>
-                        <li><a href="{{ route('properties.index') }}">Propiedades</a>
+                        <li>
+                            <a href="{{ route('properties.index') }}">Propiedades</a>
+                        </li>
                         <li>
                             <a href="{{ route('properties.create') }}">Dar de alta Propiedad</a>
                         </li>
                         <li>
-                            <a href="{{ route('message.index') }}">Mensajes</a>
+                            <a href="{{ route('messages.index') }}">Mensajes</a>
                         </li>
-                        <li>
                     @endif
 
                     <!-- Opciones para inquilino -->
@@ -147,7 +148,7 @@
                             <b>Inquilino</b>
                         </li>
                         <li>
-                            <a href="{{--URL::action('TenantsController@getMessage')--}}">Mensajes</a>
+                            <a href="#">Mensajes</a>
                         </li>
                         <li>
                             <a href="#">Estado y Resolucion</a>

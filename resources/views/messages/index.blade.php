@@ -3,6 +3,7 @@
 @section('css')
 <link href="/css/bootstrap-table.css" rel="stylesheet">
 @endsection
+
 @section('js')
 <script src="/js/bootstrap-table.js"></script>
 <script src="/js/bootstrap-table-export.js"></script>
@@ -16,12 +17,12 @@
 			<div class="panel-body">
 				<!-- Crear Mensaje -->
 				<div id="toolbar">
-					<a href="{{ route('message.create') }}" class="btn btn-primary">Enviar Mensaje</a>
+					<a href="{{ route('messages.create') }}" class="btn btn-primary">Enviar Mensaje</a>
 				</div>
 				<!-- Tabla de Mensajes Recibidos -->
 				<table data-toggle="table"
 					data-toolbar="#toolbar"
-					data-show-export="true" 
+					data-show-export="true"
 					data-search="true"
 					data-show-columns="true"
 					data-sort-name="fecha"
@@ -37,18 +38,22 @@
 					</thead>
 					<tbody>
 					@foreach ($messages as $message)
-					<tr{!! $message->read_on?:' class="danger"' !!}>
-							<td>{{ $message->sender->getFullNameAttribute() }}</td>
+						{{-- <tr{!! $message->read_on? : ' class="danger"' !!}> --}}
+						<tr{!! !$message->read ? ' class="danger"' : '' !!}>
+							<td>{{ $message->sender->full_name }}</td>
 							<td>{{ $message->subject }}</td>
 							<td>{{ $message->content }}</td>
 							<td>{{ $message->created_at }}</td>
 							<td style="text-align: center">
-								<a href="#Modal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i></a>
-								<a href="#Modal" role="button" data-toggle="modal" ><i class="glyphicon glyphicon-remove" aria-hidden="true"></i></a>
+								<a href="#Modal" role="button" data-toggle="modal">
+									<i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i>
+								</a>
+								<a href="#Modal" role="button" data-toggle="modal">
+									<i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+								</a>
 							</td>
-					</tr>
-					@endforeach
 						</tr>
+					@endforeach
 					</tbody>
 				</table>
 				<!-- Paginador -->
