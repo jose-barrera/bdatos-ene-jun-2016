@@ -447,6 +447,42 @@
         }
     };
 
+    BootstrapTable.LOCALES['es-MX'] = BootstrapTable.LOCALES['mx'] = {
+        formatLoadingMessage: function () {
+            return 'Cargando, por favor espere...';
+        },
+        formatRecordsPerPage: function (pageNumber) {
+            return sprintf('%s registros por página', pageNumber);
+        },
+        formatShowingRows: function (pageFrom, pageTo, totalRows) {
+            return sprintf('Mostrando %s a %s de %s filas', pageFrom, pageTo, totalRows);
+        },
+        formatDetailPagination: function (totalRows) {
+            return sprintf('Mostrando %s filas', totalRows);
+        },
+        formatSearch: function () {
+            return 'Buscar';
+        },
+        formatNoMatches: function () {
+            return 'No se encontraron registros.';
+        },
+        formatPaginationSwitch: function () {
+            return 'Ocultar/Mostrar paginación';
+        },
+        formatRefresh: function () {
+            return 'Refrescar';
+        },
+        formatToggle: function () {
+            return 'Alternar';
+        },
+        formatColumns: function () {
+            return 'Columnas';
+        },
+        formatAllRows: function () {
+            return 'Todas';
+        }
+    };
+
     $.extend(BootstrapTable.DEFAULTS, BootstrapTable.LOCALES['en-US']);
 
     BootstrapTable.COLUMN_DEFAULTS = {

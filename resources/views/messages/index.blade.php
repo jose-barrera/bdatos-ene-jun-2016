@@ -26,7 +26,8 @@
 					data-search="true"
 					data-show-columns="true"
 					data-sort-name="fecha"
-					data-sort-order="desc">
+					data-sort-order="desc"
+					data-locale="es-MX">
 					<thead>
 						<tr>
 							<th data-field="nombre" data-sortable="true">Nombre</th>
@@ -38,7 +39,6 @@
 					</thead>
 					<tbody>
 					@foreach ($messages as $message)
-						{{-- <tr{!! $message->read_on? : ' class="danger"' !!}> --}}
 						<tr{!! !$message->read ? ' class="danger"' : '' !!}>
 							<td>{{ $message->sender->full_name }}</td>
 							<td>{{ $message->subject }}</td>
