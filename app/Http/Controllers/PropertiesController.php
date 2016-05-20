@@ -196,7 +196,7 @@ class PropertiesController extends Controller
             ' property lessor\'s id']);
 
         if ($validator->fails()) {
-            return redirect()->route('properties.get_rent', ['id' => $id])
+            return redirect()->route('properties.rent.get', ['id' => $id])
                 ->withErrors($validator)->withInput();
         } else {
             // Detach current rent.
@@ -221,7 +221,7 @@ class PropertiesController extends Controller
      * @param  int $id
      * @return Illuminate\Http\Response
      */
-    public function deleteRent($id)
+    public function destroyRent($id)
     {
         $property = Property::findOrFail($id);
 

@@ -6,7 +6,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><strong>Rentar</strong> {{ $property->title }}</div>
             <div class="panel-body">
-                {{ Form::model($property->currentRent, ['route' => ['properties.post_rent', $property->id], 'class' => 'form-horizontal']) }}
+                {{ Form::model($property->currentRent, ['route' => ['properties.rent.post', $property->id], 'class' => 'form-horizontal']) }}
 
                     <!-- Propiedad -->
                     {{ Form::hidden('property_id', $property->id) }}

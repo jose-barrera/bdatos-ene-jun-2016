@@ -12,38 +12,33 @@
 */
 
 Route::get('/', function () {
-	if(Auth::guest())
-		return redirect('login');
-	else
-    	return redirect('messages');
+    if(Auth::guest())
+        return redirect('login');
+    else
+        return redirect('messages');
 })->name('index');
 
 Route::auth();
 
-// Route::get('/home', 'HomeController@index');
-
-// Route::controller('lessors', 'LessorController');
-
-// Route::group(['prefix' => 'properties'], function () {
-// 	Route::get('/', 'PropertiesController@index');
-// 	Route::post('/', 'PropertiesController@store');
-// 	Route::get('/{id}', 'PropertiesController@show');
-// 	Route::get('/create', 'PropertiesController@create');
-// });
-
-// Route::controller('tenants', 'TenantsController');
-
-// Route::get('properties/{id}', 'PropertiesController@getIndex');
-// Route::controller('properties', 'PropertiesController');
-
 Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
 
-Route::get('/properties/{id}/rent', 'PropertiesController@getRent')
-    ->name('properties.get_rent');
-Route::post('/properties/{id}/rent', 'PropertiesController@postRent')
-    ->name('properties.post_rent');
-Route::delete('/properties/{id}/rent/delete', 'PropertiesController@deleteRent')
-    ->name('properties.delete_rent');
+// Route::get('/properties/{id}/rent', 'PropertiesController@getRent')
+//     ->name('properties.get_rent');
+// Route::post('/properties/{id}/rent', 'PropertiesController@postRent')
+//     ->name('properties.post_rent');
+// Route::delete('/properties/{id}/rent/delete', 'PropertiesController@deleteRent')
+//     ->name('properties.delete_rent');
+// Route::resource('properties', 'PropertiesController');
+
+Route::group([
+    'prefix' => '/properties/{id}/rent',
+    'as' => 'properties.rent.'
+    ], function () {
+        Route::get('/', 'PropertiesController@getRent')->name('get');
+        Route::post('/', 'PropertiesController@postRent')->name('post');
+        Route::delete('/', 'PropertiesController@destroyRent')->name('destroy');
+    }
+);
 Route::resource('properties', 'PropertiesController');
 
 Route::resource('messages', 'MessagesController');

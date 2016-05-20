@@ -26,8 +26,9 @@ class Rent extends Model
 
 	public function setExpiresAttribute($value)
 	{
-		$this->attributes['expires'] = Carbon::createFromFormat(
-			'Y-m-d', $value);
+		if (isset($value))
+			$value = Carbon::createFromFormat('Y-m-d', $value);
+		$this->attributes['expires'] = $value;
 	}
 
 	public function getLessorAttribute()

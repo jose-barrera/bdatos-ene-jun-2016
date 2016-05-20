@@ -80,12 +80,12 @@
                                         <div class="clearfix separator" style="margin: 15px"></div>
 
                                         @if($rented)
-                                        <a onclick="if (confirm('Eliminar renta?')) $('#delete-rent-{{ $property->id }}').submit();"
+                                        <a onclick="if (confirm('Eliminar renta?')) $('#destroy-rent-{{ $property->id }}').submit();"
                                                 class="btn btn-warning">
                                             <span class="glyphicon glyphicon-trash"></span> Eliminar renta
                                         </a>
                                         @else
-                                        <a href="{{ route('properties.get_rent', ['id' => $property->id]) }}"
+                                        <a href="{{ route('properties.rent.get', ['id' => $property->id]) }}"
                                                 class="btn btn-primary">Rentar</a>
                                         @endif
 
@@ -94,7 +94,7 @@
                                                     class="btn btn-default">
                                                 <span class="glyphicon glyphicon-pencil"></span> Editar propiedad
                                             </a>
-                                            <a onclick="if (confirm('Eliminar propiedad?')) $('#delete-property-{{ $property->id }}').submit();"
+                                            <a onclick="if (confirm('Eliminar propiedad?')) $('#destroy-property-{{ $property->id }}').submit();"
                                                     class="btn btn-danger">
                                                 <span class="glyphicon glyphicon-trash"></span> Eliminar propiedad
                                             </a>
@@ -102,15 +102,15 @@
 
                                         <!-- Forma oculta para borrar la renta -->
                                         @if($rented)
-                                        {{ Form::open(['route' => ['properties.delete_rent', $property->id],
-                                            'method' => 'delete', 'id' => 'delete-rent-'.$property->id,
+                                        {{ Form::open(['route' => ['properties.rent.destroy', $property->id],
+                                            'method' => 'delete', 'id' => 'destroy-rent-'.$property->id,
                                             'style' => 'display: hidden;']) }}
                                         {{ Form::close() }}
                                         @endif
 
                                         <!-- Forma oculta para borrar la propiedad -->
                                         {{ Form::open(['route' => ['properties.destroy', 'id' => $property->id],
-                                            'method' => 'delete', 'id' => 'delete-property-'.$property->id,
+                                            'method' => 'delete', 'id' => 'destroy-property-'.$property->id,
                                             'style' => 'display: hidden;']) }}
                                         {{ Form::close() }}
                                     @endif
