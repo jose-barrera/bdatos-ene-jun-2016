@@ -11,12 +11,16 @@
 |
 */
 
+// Route::get('/', function () {
+//     if(Auth::guest())
+//         return redirect('login');
+//     else
+//         return redirect('messages');
+// })->name('index');
+
 Route::get('/', function () {
-    if(Auth::guest())
-        return redirect('login');
-    else
-        return redirect('messages');
-})->name('index');
+    return redirect('messages');
+})->middleware('auth')->name('index');
 
 Route::get('terms', function () {
     return view('terms');
