@@ -56,7 +56,7 @@
                         <input type="checkbox">
                     </td>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->fullName() }}</td>
+                    <td>{{ $user->full_name }}</td>
                     <td style="text-align: center">
                         <a href="{{ route('users.edit', ['id' => $user->id ]) }}">
                             <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
