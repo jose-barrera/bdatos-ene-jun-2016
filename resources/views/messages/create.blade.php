@@ -3,62 +3,46 @@
 @section('css')
 <link href="/css/bootstrap-tagsinput.css" rel="stylesheet">
 @endsection
+
 @section('js')
 <script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/bootstrap-tagsinput.js"></script>
 <script src="/js/message.js"></script>
-
 @endsection
+
 @section('content')
 <div class="col-lg-12">
 	<div class="panel panel-default">
 		<div class="panel-heading">Crear Mensaje</div>
 		<div class="panel-body">
 			<!-- Formulario -->
-			{{ Form::open(['method' => 'POST', 'class' => 'form-horizontal']) }}
+			{{ Form::open(['route' => 'messages.store', 'method' => 'POST',
+				'class' => 'form-horizontal']) }}
 
 				<!-- Inquilinos -->
-				<div class="form-group{{ $errors->has('tenants') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Inquilinos:</label>
+				<div class="form-group">
+					{{ Form::label('receiver_id', 'Inquilino', ['class' => 'control-label col-md-4']) }}
 
 					<div class="col-md-6">
-						<input type="text" class="form-control" name="tenants" value="{{ old('tenants') }}"  required>
-
-						@if ($errors->has('tenants'))
-						<span class="help-block">
-							<strong>{{ $errors->first('tenants') }}</strong>
-						</span>
-						@endif
+						{{ Form::text('receiver_id', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
 				<!-- Asunto -->
-				<div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Asunto:</label>
+				<div class="form-group">
+					{{ Form::label('subject', 'Asunto', ['class' => 'control-label col-md-4']) }}
 
 					<div class="col-md-6">
-						<input type="text" class="form-control" name="subject" required>
-
-						@if ($errors->has('subject'))
-						<span class="help-block">
-							<strong>{{ $errors->first('subject') }}</strong>
-						</span>
-						@endif
+						{{ Form::text('subject', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
 				<!-- Mensaje a enviar -->
-				<div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
-					<label class="col-md-4 control-label">Mensaje:</label>
+				<div class="form-group">
+					{{ Form::label('content', 'Mensaje', ['class' => 'control-label col-md-4']) }}
 
 					<div class="col-md-6">
-						<textarea class="form-control" name="message" required>{{ old('message') }}</textarea>
-
-						@if ($errors->has('message'))
-						<span class="help-block">
-							<strong>{{ $errors->first('message') }}</strong>
-						</span>
-						@endif
+						{{ Form::textarea('content', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 

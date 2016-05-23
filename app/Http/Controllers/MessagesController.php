@@ -2,11 +2,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
+use Log;
+use Validator;
+
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Message;
-use Auth;
-use DB;
 
 class MessagesController extends Controller
 {
@@ -27,7 +30,7 @@ class MessagesController extends Controller
 	 */
 	public function index()
 	{
-		$messages = Message::where('receiver_id', Auth::id());
+		$messages = Message::where('sender_id', Auth::id())->get();
 		// $messages = Message::select('sender_id', 'subject', DB::raw('substr(content, 1, 30) as content'),
 		// 	'read_on', 'created_at')->where('receiver_id', Auth::user()->id)
 		// 	->with(['sender'=>function ($query) {
@@ -55,7 +58,26 @@ class MessagesController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		$validator = Validator::make($request->all(), [
+			'receiver_id' => 'numeric|required',
+			'subject' => 'required',
+			'content' => 'required'
+		]);
+
+		if ($validator->passes()) {
+			$message = new Message;
+			$message->subject = $request['subject'];
+			$message->content = $request['content'];
+			$message->sender_id = Auth::id();
+			$message->receiver_id = $request['receiver_id'];
+			$message->category_id = 1;
+			$message->save();
+
+			return redirect()->route('messages.index');
+		} else {
+			return redirect()->route('messages.create')
+				->withErrors($validator)->withInput();
+		}
 	}
 
 	/**

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('input[name="tenants"]').tagsinput({
+	$('input[name="receiver_id"]').tagsinput({
 		itemValue: 'id',
 		itemText: 'name_email',
 		typeahead: {
