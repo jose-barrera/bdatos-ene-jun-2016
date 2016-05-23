@@ -23,7 +23,7 @@ class User extends BaseUser
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'pivot',
     ];
 
 	protected $table = 'users';

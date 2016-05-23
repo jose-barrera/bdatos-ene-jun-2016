@@ -17,8 +17,7 @@ class MessagesController extends Controller
 	 */
 	public function index()
 	{
-		$messages = Message::select('sender_id', 'subject', DB::raw('substr(content, 0, 30)'),
-			'content', 'read_on', 'created_at')->where('receiver_id', Auth::user()->id)
+		$messages = Message::select('sender_id', 'subject', DB::raw('substr(content, 1, 30) as content'), 'read_on', 'created_at')->where('receiver_id', Auth::user()->id)
 			->with(['sender'=>function ($query) {
 				$query->select('id', 'first_name', 'first_last_name', 'second_last_name')->first();
 		}])->get();
