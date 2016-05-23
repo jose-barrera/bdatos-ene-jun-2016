@@ -4,6 +4,7 @@
 <link href="/css/bootstrap-tagsinput.css" rel="stylesheet">
 @endsection
 @section('js')
+<script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/bootstrap-tagsinput.js"></script>
 <script src="/js/message.js"></script>
 
@@ -21,7 +22,7 @@
 					<label class="col-md-4 control-label">Inquilinos:</label>
 
 					<div class="col-md-6">
-						<input type="text" class="form-control" name="tenants" value="{{ old('tenants') }}" data-role="tagsinput" required>
+						<input type="text" class="form-control" name="tenants" value="{{ old('tenants') }}"  required>
 
 						@if ($errors->has('tenants'))
 						<span class="help-block">

@@ -29,6 +29,7 @@ Route::get('terms', function () {
 Route::auth();
 
 Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
+Route::get('users/tenants/{search}', 'UsersController@getTenants');
 
 // Route::get('/properties/{id}/rent', 'PropertiesController@getRent')
 //     ->name('properties.get_rent');

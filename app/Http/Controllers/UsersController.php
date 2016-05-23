@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App;
 use App\Http\Requests;
 use App\Models\User;
+use App\Models\UserRole;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -68,5 +69,17 @@ class UsersController extends Controller
         $user->roles()->detach();
         $user->delete();
         return redirect()->route('users.index');
+    }
+
+    /**
+     * Return all the tenants where first_name, first_last_name or email agree with $search.
+     *
+     * @param  string  $search
+     * @return \Illuminate\Http\Response
+     */
+    public function getTenants($search)
+    {
+        $users=UserRole::select('id')->where('key','tenant')->first()->searchUsers($search)->take(5)->get();
+        return $users;
     }
 }
