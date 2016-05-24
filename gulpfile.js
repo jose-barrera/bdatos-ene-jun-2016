@@ -12,5 +12,12 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+	//mix.sass('app.scss');
+	mix.browserSync({
+		files: ['app/**/*',
+			'public/**/*',
+			'resources/views/**/*'
+		],
+		proxy: "arrendamiento.com"
+	});
 });

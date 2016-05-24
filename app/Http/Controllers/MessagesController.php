@@ -82,7 +82,7 @@ class MessagesController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		return view('messages.show');
 	}
 
 	/**

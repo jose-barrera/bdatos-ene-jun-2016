@@ -14,6 +14,7 @@
 @endsection
 
 @section('content')
+<div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">Mensajes Arrendador</div>
@@ -64,4 +65,15 @@
 			</div>
 		</div>
 	</div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+	$(document).ready(function($) {
+		$('tr').click(function() {
+			window.location='messages/show';
+		});
+	});
+</script>
 @endsection
