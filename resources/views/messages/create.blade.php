@@ -59,3 +59,13 @@
 	</div>
 </div>
 @endsection
+
+@section('scripts')
+@if(isset($user))
+<script>
+	$(document).ready(function($) {
+		$('input[name="receiver_id"]').tagsinput('add', { id: '{{ $user->id }}', name_email: '{{ $user->email}} ' });
+	});
+</script>
+@endif
+@endsection

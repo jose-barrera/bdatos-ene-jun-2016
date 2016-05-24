@@ -26,12 +26,12 @@ class Message extends Model
 
 	public function receiver()
 	{
-		return $this->belongsTo('App\Models\User', 'receiver');
+		return $this->belongsTo('App\Models\User', 'receiver_id');
 	}
 
 	public function property()
 	{
-		return $this->belongsTo('App\Models\User', 'property_id');
+		return $this->belongsTo('App\Models\Property', 'property_id');
 	}
 
 	public function category()

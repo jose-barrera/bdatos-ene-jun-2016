@@ -45,6 +45,17 @@ class MessagesController extends Controller
 	}
 
 	/**
+	 * Show the form for creating a new resource for a specific user.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function getCreateId($id)
+	{
+		$user=User::where('id', $id)->first();
+		return view('messages.create',['user'=>$user]);
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
@@ -82,7 +93,8 @@ class MessagesController extends Controller
 	 */
 	public function show($id)
 	{
-		return view('messages.show');
+		$message = Message::where('id', $id)->first();
+		return view('messages.show', ['message' => $message]);
 	}
 
 	/**

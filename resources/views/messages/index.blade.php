@@ -43,7 +43,7 @@
 					</thead>
 					<tbody>
 					@foreach ($messages as $message)
-						<tr{!! !$message->read ? ' class="danger"' : '' !!}>
+						<tr{!! $message->read ? ' class="danger"' : '' !!}{!!' data-id="'.$message->id.'"'!!}>
 							<td>{{ $message->sender->full_name }}</td>
 							<td>{{ $message->subject }}</td>
 							<td>{{ $message->content }}</td>
@@ -71,8 +71,8 @@
 @section('scripts')
 <script>
 	$(document).ready(function($) {
-		$('tr').click(function() {
-			window.location='messages/show';
+		$('tbody>tr').click(function() {
+			window.location='messages/'+$(this).attr('data-id');
 		});
 	});
 </script>
