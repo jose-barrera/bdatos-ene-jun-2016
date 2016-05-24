@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 use DB;
 use Log;
 use Validator;
+use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Models\User;
 use App\Models\Message;
 
@@ -31,13 +31,7 @@ class MessagesController extends Controller
 	public function index()
 	{
 		$messages = Message::where('sender_id', Auth::id())->get();
-		// $messages = Message::select('sender_id', 'subject', DB::raw('substr(content, 1, 30) as content'),
-		// 	'read_on', 'created_at')->where('receiver_id', Auth::user()->id)
-		// 	->with(['sender'=>function ($query) {
-		// 		$query->select('id', 'first_name', 'first_last_name', 'second_last_name')->first();
-		// }])->get();
-
-		return view('messages.index', ['messages'=>$messages]);
+		return view('messages.index', ['messages' => $messages]);
 	}
 
 	/**
@@ -111,7 +105,10 @@ class MessagesController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		//
+		$message = Message::findOrFail($id);
+		$message->read_on = Carbon::now();
+		$message->save();
+		return redirect()->route('messages.index');
 	}
 
 	/**

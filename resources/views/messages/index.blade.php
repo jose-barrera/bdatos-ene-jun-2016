@@ -2,6 +2,9 @@
 
 @section('css')
 <link href="/css/bootstrap-table.css" rel="stylesheet">
+<style>
+	form { display: none; }
+</style>
 @endsection
 
 @section('js')
@@ -32,7 +35,7 @@
 						<tr>
 							<th data-field="nombre" data-sortable="true">Nombre</th>
 							<th data-field="asunto" data-sortable="true">Asunto</th>
-							<th>Mensaje</th>
+							<th data-field="mensaje" data-sortable="false">Mensaje</th>
 							<th data-field="fecha" data-sortable="true">Fecha</th>
 							<th style="width: 36px;">Opción</th>
 						</tr>
@@ -44,13 +47,13 @@
 							<td>{{ $message->subject }}</td>
 							<td>{{ $message->content }}</td>
 							<td>{{ $message->created_at }}</td>
-							<td style="text-align: center">
-								<a href="#Modal" role="button" data-toggle="modal">
-									<i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i>
+							<td style="text-align: center;">
+								<a onclick="$('#read-message-{{ $message->id }}').submit();" role="button" data-toggle="modal">
+									<i class="glyphicon glyphicon-ok" aria-hidden="true"></i>
 								</a>
-								<a href="#Modal" role="button" data-toggle="modal">
-									<i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-								</a>
+								{{ Form::open(['route' => ['messages.update', $message->id], 'method' => 'PATCH',
+									'id' => 'read-message-' . $message->id ]) }}
+								{{ Form::close() }}
 							</td>
 						</tr>
 					@endforeach
