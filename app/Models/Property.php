@@ -9,13 +9,17 @@ class Property extends Model
 	protected $table = 'properties';
 
 	protected $fillable = [
-		'alias', 'description', 'address', 'postal_code',
-		'type_id', 'lessor_id'
+		'alias', 'description', 'address', 'postal_code', 'price', 'maintenance_cost', 'capacity', 'contract_id', 'type_id', 'lessor_id'
 	];
 
 	public function type()
 	{
 		return $this->belongsTo('App\Models\PropertyType', 'type_id');
+	}
+
+	public function contract()
+	{
+		return $this->belongsTo('App\Models\ContractType', 'contract_id');
 	}
 
 	public function lessor()

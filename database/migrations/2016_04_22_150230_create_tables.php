@@ -44,16 +44,29 @@ class CreateTables extends Migration
 
 		});
 
+		Schema::create('contract_types', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('key')->unique();
+			$table->string('description');
+			$table->timestamps();
+
+		});		
+
 		Schema::create('properties', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('alias');
 			$table->string('description');
 			$table->string('address');
 			$table->integer('postal_code');
+			$table->integer('price')->comment('Precio de renta');
+			$table->integer('maintenance_cost')->comment('El costo del mantenimiento');
+			$table->integer('capacity')->comment('Capacidad de habitaciones');
+			$table->integer('contract_id')->unsigned()->comment('Tipo de contrato');
 			$table->integer('type_id')->unsigned()->comment('Tipo de propiedad');
 			$table->integer('lessor_id')->unsigned()->comment('Arrendador');
 			$table->timestamps();
 
+			$table->foreign('contract_id')->references('id')->on('contract_types');
 			$table->foreign('type_id')->references('id')->on('property_types');
 			$table->foreign('lessor_id')->references('id')->on('users');
 		});
@@ -123,6 +136,7 @@ class CreateTables extends Migration
 		Schema::drop('messages');
 		Schema::drop('message_categories');
 		Schema::drop('properties');
+		Schema::drop('contract_types');
 		Schema::drop('property_types');
 		Schema::drop('user_roles');
 		Schema::drop('users');

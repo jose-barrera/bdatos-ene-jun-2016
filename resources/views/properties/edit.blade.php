@@ -43,6 +43,39 @@
                         </div>
                     </div>
 
+                    <!-- Precio de renta -->
+                    <div class="form-group">
+                        {{ Form::label('price', 'Precio de Renta', ['class' => 'control-label col-md-3']) }}
+                        <div class="col-md-7">
+                            {{ Form::number('price', null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+
+                    <!-- Costo del mantenimiento -->
+                    <div class="form-group">
+                        {{ Form::label('maintenance_cost', 'Costo de Mantenimiento', ['class' => 'control-label col-md-3']) }}
+                        <div class="col-md-7">
+                            {{ Form::number('maintenance_cost', null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+
+                    <!-- Capacidad de habitaciones -->
+                    <div class="form-group">
+                        {{ Form::label('capacity', 'Capacidad', ['class' => 'control-label col-md-3']) }}
+                        <div class="col-md-7">
+                            {{ Form::number('capacity', null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+
+                    <!-- Tipo de contrato -->
+                    <div class="form-group">
+                        {{ Form::label('contract_id', 'Contrato', ['class' => 'control-label col-md-3']) }}
+                        <div class="col-md-7">
+                            {{ Form::select('contract_id', App\Models\ContractType::pluck('description', 'id'),
+                                null, ['class' => 'form-control', 'placeholder' => 'Seleccionar...']) }}
+                        </div>
+                    </div>
+
                     <!-- Tipo propiedad -->
                     <div class="form-group">
                         {{ Form::label('type_id', 'Tipo de propiedad', ['class' => 'col-md-3 control-label']) }}

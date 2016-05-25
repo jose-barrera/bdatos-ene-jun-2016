@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
 use App\Models\Property;
 use App\Models\PropertyType;
+use App\Models\ContractType;
 use App\Models\Rent;
 use App\Models\User;
 use App\Models\UserRole;
@@ -48,9 +49,11 @@ class PropertiesController extends Controller
     public function create()
     {
         $property_types = PropertyType::all();
+        $contract_types = ContractType::all();
         $user = Auth::user();
         return view('properties.create', ['property' => new Property,
-            'property_types' => $property_types,
+            'property_types' => $property_types, 'contract' => new Property,
+            'contract_types' => $contract_types,
             'user' => $user]);
     }
 
@@ -67,6 +70,10 @@ class PropertiesController extends Controller
             'description' => '',
             'address' => 'required',
             'postal_code' => 'required|numeric',
+            'price' => 'required|numeric',
+            'maintenance_cost' => 'required|numeric',
+            'capacity' => 'required|numeric',
+            'contract_id' => 'required|numeric',
             'type_id' => 'required|numeric',
             'lessor_id' => 'required|numeric']);
 
