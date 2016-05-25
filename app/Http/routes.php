@@ -52,3 +52,5 @@ Route::resource('properties', 'PropertiesController');
 
 Route::resource('messages', 'MessagesController');
 Route::get('messages/create/{id}', 'MessagesController@getCreateId');
+
+Route::resource('tenants', 'TenantsController');

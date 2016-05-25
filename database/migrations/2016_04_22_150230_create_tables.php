@@ -20,9 +20,9 @@ class CreateTables extends Migration
 			$table->string('first_last_name');
 			$table->string('second_last_name')->nullable();
 			$table->boolean('gender'); // Male = true, Female = false
-			$table->string('mobile_phone')->nullable();
-			$table->string('home_phone')->nullable();
-			$table->string('office_phone')->nullable();
+			$table->integer('mobile_phone')->nullable();
+			$table->integer('home_phone')->nullable();
+			$table->integer('office_phone')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 
