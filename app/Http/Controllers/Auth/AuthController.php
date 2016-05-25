@@ -54,7 +54,7 @@ class AuthController extends Controller
             'first_last_name' => 'required|max:255',
             'second_last_name' => 'max:255',
             'gender' => 'required|boolean',
-            'mobile_phone' => 'required|number',
+            'mobile_phone' => 'number',
             'home_phone' => 'number',
             'office_phone' => 'number',
             'email' => 'required|email|max:255|unique:users',
