@@ -138,6 +138,9 @@
                             <a href="{{ route('properties.create') }}">Dar de alta Propiedad</a>
                         </li>
                         <li>
+                            <a href="/register">Dar de alta Inquilino</a>
+                        </li>
+                        <li>
                             <a href="{{ route('messages.index') }}">Mensajes</a>
                         </li>
                     @endif
