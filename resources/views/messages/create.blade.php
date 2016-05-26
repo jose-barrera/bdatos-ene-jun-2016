@@ -18,6 +18,7 @@
 			<!-- Formulario -->
 			{{ Form::open(['route' => 'messages.store', 'method' => 'POST',
 				'class' => 'form-horizontal']) }}
+				
 
 				<!-- Inquilinos -->
 				<div class="form-group">

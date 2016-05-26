@@ -53,7 +53,8 @@
                             @endif
                         </div>
                     </div>
-
+                    
+                    <!-- Genero -->
                     <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">Sexo</label>
 
@@ -81,6 +82,51 @@
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Celular -->
+                    <div class="form-group{{ $errors->has('mobile_phone') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Celular</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="mobile_phone" value="{{ old('mobile_phone') }}">
+
+                            @if ($errors->has('mobile_phone'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('mobile_phone') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Telefono de Casa -->
+                    <div class="form-group{{ $errors->has('home_phone') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Telefono de Casa</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="home_phone" value="{{ old('home_phone') }}">
+
+                            @if ($errors->has('home_phone'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('home_phone') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Telefono de Oficina -->
+                    <div class="form-group{{ $errors->has('office_phone') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Telefono de Oficina</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="office_phone" value="{{ old('office_phone') }}">
+
+                            @if ($errors->has('office_phone'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('office_phone') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -117,22 +163,7 @@
                     </div>
 
                     <!-- Roles -->
-                    <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Roles</label>
-
-                        <div class="col-md-6">
-                            @foreach(App\Models\UserRole::all() as $role)
-                                <input type="checkbox" name="roles" id="roles-{{ $role->id }}" value="{{ $role->id }}">
-                                <label for="roles[{{ $role->id }}]">{{ ucfirst($role->key) }}</label>
-                            @endforeach
-
-                            @if ($errors->has('roles'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('roles') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
+                    <input type="hidden" name="roles" value="{{ App\Models\UserRole::where('key','tenant')->first()->id }}">
 
                     <!-- Boton de submit -->
                     <div class="form-group">

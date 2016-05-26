@@ -87,9 +87,9 @@
                                                     <div class="col-sm-8">
                                                         <p class="text-left"><strong>{{ Auth::user()->full_name }}</strong></p>
                                                         <p class="text-left small">{{ Auth::user()->email }}</p>
-                                                        <p class="text-left">
-                                                            <a href="{{ route('users.show', ['id' => Auth::user()->id]) }}" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
-                                                        </p>
+                                                        <!-- <p class="text-left">
+                                                            <a href="{{-- route('users.show', ['id' => Auth::user()->id]) --}}" class="btn btn-primary btn-block btn-sm"><b>Cuenta</b></a>
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                             </div>

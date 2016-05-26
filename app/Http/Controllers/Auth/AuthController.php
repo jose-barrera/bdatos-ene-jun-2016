@@ -37,8 +37,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => ['logout','showRegistrationForm']]);
-        $this->middleware('auth.lessor', ['only' => 'showRegistrationForm']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'showRegistrationForm', 'register']]);
+        $this->middleware('auth.lessor', ['only' => ['showRegistrationForm', 'register']]);
     }
 
     /**
@@ -54,9 +54,9 @@ class AuthController extends Controller
             'first_last_name' => 'required|max:255',
             'second_last_name' => 'max:255',
             'gender' => 'required|boolean',
-            'mobile_phone' => 'number',
-            'home_phone' => 'number',
-            'office_phone' => 'number',
+            'mobile_phone' => 'numeric',
+            'home_phone' => 'numeric',
+            'office_phone' => 'numeric',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -75,6 +75,9 @@ class AuthController extends Controller
             'first_last_name' => $data['first_last_name'],
             'second_last_name' => $data['second_last_name'],
             'gender' => $data['gender'],
+            'mobile_phone' => $data['mobile_phone'],
+            'home_phone' => $data['home_phone'],
+            'office_phone' => $data['office_phone'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
