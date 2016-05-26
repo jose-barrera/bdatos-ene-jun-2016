@@ -25,6 +25,6 @@ class UsersTableSeeder extends Seeder
             'second_last_name' => 'Second',
         	'gender' => true,
         	'mobile_phone' => '9999999'
-        ])->roles()->saveMany([$tenant, $lessor]);
+        ])->roles()->saveMany([$lessor]);
     }
 }

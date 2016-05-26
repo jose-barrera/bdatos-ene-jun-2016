@@ -7,7 +7,9 @@
 @section('js')
 <script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/bootstrap-tagsinput.js"></script>
-<script src="/js/message.js"></script>
+@if(!Auth::user()->hasRole('tenant'))
+	<script src="/js/message.js"></script>
+@endif
 @endsection
 
 @section('content')
@@ -19,7 +21,9 @@
 			{{ Form::open(['route' => 'messages.store', 'method' => 'POST',
 				'class' => 'form-horizontal']) }}
 				
-
+				@if(Auth::user()->hasRole('tenant'))
+					{{ Form::hidden('receiver_id', 1) }}
+				@else
 				<!-- Inquilinos -->
 				<div class="form-group">
 					{{ Form::label('receiver_id', 'Inquilino', ['class' => 'control-label col-md-4']) }}
@@ -28,6 +32,7 @@
 						{{ Form::text('receiver_id', null, ['class' => 'form-control']) }}
 					</div>
 				</div>
+				@endif
 
 				<!-- Asunto -->
 				<div class="form-group">
@@ -62,7 +67,7 @@
 @endsection
 
 @section('scripts')
-@if(isset($user))
+@if(isset($user) && !Auth::user()->hasRole('tenant'))
 <script>
 	$(document).ready(function($) {
 		$('input[name="receiver_id"]').tagsinput('add', { id: '{{ $user->id }}', name_email: '{{ $user->email}} ' });

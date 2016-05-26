@@ -34,7 +34,11 @@
 					data-locale="es-MX">
 					<thead>
 						<tr>
-							<th data-field="nombre" data-sortable="true">Nombre</th>
+							@if(@$sent)
+								<th data-field="nombre" data-sortable="true">Para</th>
+							@else
+								<th data-field="nombre" data-sortable="true">De</th>
+							@endif
 							<th data-field="asunto" data-sortable="true">Asunto</th>
 							<th data-field="mensaje" data-sortable="false">Mensaje</th>
 							<th data-field="fecha" data-sortable="true">Fecha</th>
@@ -44,7 +48,11 @@
 					<tbody>
 					@foreach ($messages as $message)
 						<tr{!! $message->read ? ' class="danger"' : '' !!}{!!' data-id="'.$message->id.'"'!!}>
+							@if(@$sent)
+							<td>{{ $message->receiver->full_name }}</td>
+							@else
 							<td>{{ $message->sender->full_name }}</td>
+							@endif
 							<td>{{ $message->subject }}</td>
 							<td>{{ $message->content }}</td>
 							<td>{{ $message->created_at }}</td>

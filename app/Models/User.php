@@ -56,9 +56,10 @@ class User extends BaseUser
 		return $this->hasMany('App\Models\Message', 'receiver_id');
 	}
 
-	public function properties()
+	public function rentalProperty()
 	{
-		return $this->hasMany('App\Models\Property', 'lessor_id');
+		return $this->belongsToMany('App\Models\Property', 'rents' ,
+			'tenant_id', 'property_id');
 	}
 
 	public function rentsAsTenant()
@@ -82,6 +83,12 @@ class User extends BaseUser
 			if ($role->key === $role_key)
 				return true;
 		}
+		return false;
+	}
+	public function hasPropertie()
+	{
+		if($this->rentsAsTenant()->exists())
+				return true;
 		return false;
 	}
 }

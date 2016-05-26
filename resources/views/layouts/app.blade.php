@@ -146,6 +146,9 @@
                         <li>
                             <a href="{{ route('messages.index') }}">Mensajes</a>
                         </li>
+                        <li>
+                            <a href="{{ route('messages.sent') }}">Mensajes Enviados</a>
+                        </li>
                     @endif
 
                     <!-- Opciones para inquilino -->
@@ -154,7 +157,10 @@
                             <b>Inquilino</b>
                         </li>
                         <li>
-                            <a href="#">Mensajes</a>
+                            <a href="{{ route('messages.index') }}">Mensajes</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('messages.sent') }}">Mensajes Enviados</a>
                         </li>
                         <li>
                             <a href="#">Estado y Resolucion</a>

@@ -7,6 +7,7 @@ use DB;
 use Log;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 use App\Models\Message;
@@ -30,7 +31,7 @@ class MessagesController extends Controller
 	 */
 	public function index()
 	{
-		$messages = Message::where('sender_id', Auth::id())->get();
+		$messages = Message::where('receiver_id',Auth::id())->get();
 		return view('messages.index', ['messages' => $messages]);
 	}
 
@@ -40,7 +41,7 @@ class MessagesController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create()
-	{
+	{	
 		return view('messages.create');
 	}
 
@@ -69,19 +70,30 @@ class MessagesController extends Controller
 			'content' => 'required'
 		]);
 
-		if ($validator->passes()) {
-			$message = new Message;
-			$message->subject = $request['subject'];
-			$message->content = $request['content'];
-			$message->sender_id = Auth::id();
-			$message->receiver_id = $request['receiver_id'];
-			$message->category_id = 1;
-			$message->save();
+		$receiver = User::where('id',$request['receiver_id'])->first();
 
-			return redirect()->route('messages.index');
-		} else {
-			return redirect()->route('messages.create')
-				->withErrors($validator)->withInput();
+		if (Auth::user()->hasRole('tenant') || $receiver->hasPropertie())
+			if ($validator->passes()) {
+				$message = new Message;
+				$message->subject = $request['subject'];
+				$message->content = $request['content'];
+				if (!Auth::user()->hasRole('tenant'))
+					$message->property_id = $receiver->rentalProperty()->first()->id;
+				else
+					$message->property_id = Auth::user()->rentalProperty()->first()->id;
+				$message->sender_id = Auth::id();
+				$message->receiver_id = $request['receiver_id'];
+				$message->category_id = 1;
+				$message->save();
+
+				return redirect()->route('messages.index');
+			} else {
+				return redirect()->route('messages.create')
+					->withErrors($validator)->withInput();
+			}
+		else{
+			Session::flash('flash.message', "Deve asignar una propiedad al inquilino");
+			return redirect()->route('properties.index');
 		}
 	}
 
@@ -133,4 +145,16 @@ class MessagesController extends Controller
 	{
 		//
 	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function getMessageSent()
+	{
+		$messages = Message::where('sender_id', Auth::id())->get();
+		return view('messages.index', ['messages' => $messages, 'sent' => true]);
+	}
+
 }

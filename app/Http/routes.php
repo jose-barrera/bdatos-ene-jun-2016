@@ -51,6 +51,7 @@ Route::group([
 Route::resource('properties', 'PropertiesController');
 
 Route::resource('messages', 'MessagesController');
+Route::get('messages-sent', 'MessagesController@getMessageSent')->name('messages.sent');
 Route::get('messages/create/{id}', 'MessagesController@getCreateId');
 
 Route::resource('tenants', 'TenantsController');
