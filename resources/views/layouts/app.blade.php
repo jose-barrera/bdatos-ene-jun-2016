@@ -192,7 +192,7 @@
                     <ul class="nav nav-pills nav-justified">
                         <li><a href="{{ route('index') }}">© {{ date("Y") }} Sistema de Arrendamiento</a></li>
                         <li><a href="{{ route('terms') }}">Términos y Condiciones</a></li>
-                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="{{ route('terms') }}">Privacidad</a></li>
                     </ul>
                 </div>
             </div>
